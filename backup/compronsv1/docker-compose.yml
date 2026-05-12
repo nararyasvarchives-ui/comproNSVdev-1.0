@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    image: nginx:alpine
+    container_name: nsv-landingpage
+    ports:
+      - "9200:80"
+    volumes:
+      - .:/usr/share/nginx/html
+    restart: always

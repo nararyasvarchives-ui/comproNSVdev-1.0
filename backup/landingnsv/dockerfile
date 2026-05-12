@@ -1,0 +1,12 @@
+FROM nginx:alpine
+
+# hapus default config
+RUN rm -rf /usr/share/nginx/html/*
+
+# copy semua file website
+COPY . /usr/share/nginx/html
+
+# expose port
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

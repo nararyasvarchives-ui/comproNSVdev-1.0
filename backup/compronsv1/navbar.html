@@ -1,0 +1,128 @@
+<nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-white shadow-sm border-b border-gray-100" id="navbar">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex-shrink-0 flex items-center">
+        <img src="assets/logo/nsv.png" alt="NSV Logo" class="h-20 w-auto">
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="index.html#Home"
+           class="nsv-nav-link text-gray-600 hover:text-[#A11E21] font-medium transition-colors duration-200"
+           data-section="Home">Home</a>
+
+        <a href="index.html#About-Us"
+           class="nsv-nav-link text-gray-600 hover:text-[#A11E21] font-medium transition-colors duration-200"
+           data-section="About-Us">About Us</a>
+
+        <!-- Services Dropdown -->
+        <div class="relative" id="services-dropdown-wrapper">
+          <button id="services-dropdown-btn"
+                  class="nsv-nav-link flex items-center gap-1 text-gray-600 hover:text-[#A11E21] font-medium transition-colors duration-200 focus:outline-none">
+            Services
+            <i class="ph ph-caret-down text-sm transition-transform duration-200" id="services-caret"></i>
+          </button>
+          <div id="services-dropdown"
+               class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden opacity-0 invisible translate-y-2 transition-all duration-200 z-50">
+            <div class="py-2">
+              <a href="index.html#Services" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-[#A11E21] transition-colors">
+                <i class="ph ph-chart-line-up text-[#A11E21] text-base"></i>Business Development
+              </a>
+              <a href="index.html#Services" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-[#A11E21] transition-colors">
+                <i class="ph ph-strategy text-[#A11E21] text-base"></i>Business Strategy
+              </a>
+              <a href="index.html#Services" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-[#A11E21] transition-colors">
+                <i class="ph ph-scales text-[#A11E21] text-base"></i>Accounting, Tax & Legal
+              </a>
+              <a href="index.html#Services" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-[#A11E21] transition-colors">
+                <i class="ph ph-seal-check text-[#A11E21] text-base"></i>Business Certification
+              </a>
+              <a href="index.html#Services" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-[#A11E21] transition-colors">
+                <i class="ph ph-users-three text-[#A11E21] text-base"></i>Human Resources
+              </a>
+              <a href="index.html#Services" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-[#A11E21] transition-colors">
+                <i class="ph ph-monitor text-[#A11E21] text-base"></i>IT Consulting
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products  Dropdown -->
+        <div class="relative" id="products-dropdown-wrapper">
+          <button id="products-dropdown-btn"
+                  class="nsv-nav-link flex items-center gap-1 text-gray-600 hover:text-[#A11E21] font-medium transition-colors duration-200 focus:outline-none">
+            Products
+            <i class="ph ph-caret-down text-sm transition-transform duration-200" id="products-caret"></i>
+          </button>
+          <div id="products-dropdown"
+               class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden opacity-0 invisible translate-y-2 transition-all duration-200 z-50">
+            <div class="py-2">
+              <a href="index.html#Products" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-[#A11E21] transition-colors">
+                <i class="ph ph-graduation-cap text-[#A11E21] text-base"></i>Learning Management System (LMS)
+              </a>
+              <a href="index.html#Products" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-[#A11E21] transition-colors">
+                <i class="ph ph-file-text text-[#A11E21] text-base"></i>Management Solutions
+              </a>              
+            </div>
+          </div>
+        </div>
+
+        <a href="index.html#Portofolio"
+           class="nsv-nav-link text-gray-600 hover:text-[#A11E21] font-medium transition-colors duration-200"
+           data-section="Portofolio">Portfolio</a>
+
+        <a href="index.html#news"
+           class="nsv-nav-link text-gray-600 hover:text-[#A11E21] font-medium transition-colors duration-200"
+           data-section="news">News</a>
+
+        <a href="index.html#Contact-Us"
+           class="bg-[#A11E21] hover:bg-[#831618] text-white px-6 py-2.5 rounded-full font-medium transition-colors duration-200 shadow-sm">
+          Contact Us
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-btn" class="text-gray-600 hover:text-[#A11E21] focus:outline-none">
+          <i class="ph ph-list text-3xl"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Panel -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+    <div class="px-4 pt-2 pb-6 space-y-1 shadow-lg">
+      <a href="index.html#Home"
+         class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">Home</a>
+      <a href="index.html#About-Us"
+         class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">About Us</a>
+
+      <!-- Mobile Services Accordion -->
+      <div>
+        <button id="mobile-services-btn"
+                class="w-full flex justify-between items-center px-3 py-3 text-base font-medium text-gray-700 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">
+          Services
+          <i class="ph ph-caret-down text-sm transition-transform duration-200" id="mobile-services-caret"></i>
+        </button>
+        <div id="mobile-services-panel" class="hidden pl-4 space-y-1 mt-1">
+          <a href="index.html#Services" class="block px-3 py-2 text-sm text-gray-600 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">Business Development</a>
+          <a href="index.html#Services" class="block px-3 py-2 text-sm text-gray-600 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">Business Strategy</a>
+          <a href="index.html#Services" class="block px-3 py-2 text-sm text-gray-600 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">Accounting, Tax & Legal</a>
+          <a href="index.html#Services" class="block px-3 py-2 text-sm text-gray-600 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">Business Certification</a>
+          <a href="index.html#Services" class="block px-3 py-2 text-sm text-gray-600 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">Human Resources</a>
+          <a href="index.html#Services" class="block px-3 py-2 text-sm text-gray-600 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">IT Consulting</a>
+        </div>
+      </div>
+
+      <a href="index.html#Portofolio"
+         class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">Portfolio</a>
+      <a href="index.html#news"
+         class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-[#A11E21] hover:bg-gray-50 rounded-md transition-colors">News</a>
+      <a href="index.html#Contact-Us"
+         class="block px-3 py-3 mt-3 text-center text-base font-medium text-white bg-[#A11E21] hover:bg-[#831618] rounded-md transition-colors">Contact Us</a>
+    </div>
+  </div>
+</nav>
