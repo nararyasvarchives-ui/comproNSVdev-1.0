@@ -1,6 +1,6 @@
 /**
  * ╔══════════════════════════════════════════════════════╗
- * ║  NSV NAVBAR LOADER — navbar-loader.js                ║
+ * ║  NSV NAVBAR LOADER - navbar-loader.js                ║
  * ║  PT Nararya Semesta Visitama                         ║
  * ║                                                      ║
  * ║  CARA PAKAI:                                         ║

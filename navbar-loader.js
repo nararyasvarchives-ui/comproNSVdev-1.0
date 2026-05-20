@@ -1,6 +1,6 @@
 /**
  * ╔══════════════════════════════════════════════════════╗
- * ║  NSV NAVBAR LOADER — navbar-loader.js                ║
+ * ║  NSV NAVBAR LOADER - navbar-loader.js                ║
  * ║  PT Nararya Semesta Visitama                         ║
  * ║                                                      ║
  * ║  CARA PAKAI:                                         ║
@@ -293,6 +293,10 @@
         // Halaman non-index: cukup cocokkan filename
         if (path !== 'index.html' && linkFile === path && !href.includes('#')) {
           link.classList.add('active');
+        }
+        // Jangan aktifkan link halaman lain saat di index
+        if (path === 'index.html' && !href.includes('#')) {
+          link.classList.remove('active');
         }
       });
     }

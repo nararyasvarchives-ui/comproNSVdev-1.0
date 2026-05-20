@@ -1,6 +1,6 @@
 /**
  * ╔══════════════════════════════════════════════════════╗
- * ║  NSV FOOTER LOADER — footer-loader.js                ║
+ * ║  NSV FOOTER LOADER - footer-loader.js                ║
  * ║  PT Nararya Semesta Visitama                         ║
  * ║                                                      ║
  * ║  CARA PAKAI:                                         ║
@@ -70,7 +70,7 @@
         100% { transform: rotate(10deg) translateX(35%);  }
       }
 
-      /* ── Icon badge — bg putih (untuk section Contact Us putih) ── */
+      /* ── Icon badge - bg putih (untuk section Contact Us putih) ── */
       .contact-icon-light {
         width: 48px; height: 48px;
         border-radius: 0.875rem;
@@ -80,7 +80,7 @@
         flex-shrink: 0;
       }
 
-      /* ── Icon badge — bg transparan (legacy, jika masih dipakai) ── */
+      /* ── Icon badge - bg transparan (legacy, jika masih dipakai) ── */
       .icon-badge {
         width: 52px; height: 52px;
         border-radius: 1rem;

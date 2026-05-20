@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail - PT Nararya Semesta Visitama</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#A11E21',
+            'primary-dark': '#831618',
+            secondary: '#7F7F7F',
+            'secondary-light': '#F3F4F6',
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(0,0,0,0.05)',
+            'card': '0 10px 30px -5px rgba(0,0,0,0.08)',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    section { scroll-margin-top: 100px; }
+    .hero-gradient { background: linear-gradient(135deg, #1a0305 0%, #A11E21 50%, #7d0f14 100%); }
+    .package-card { transition: all 0.3s ease; }
+    .package-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(161,30,33,0.12); }
+    .feature-badge { @apply inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+<script src="navbar-loader.js"></script>
+
+<!-- ── DATA PRODUCT (edit bagian ini untuk ganti konten) ─────────────────── -->
+<script>
+// ============================================================
+// EDIT DATA DI SINI - sesuaikan per product
+// ============================================================
+const PRODUCT_DATA = {
+  "nsv-academy": {
+    icon: "ph-graduation-cap",
+    logo: null, // ganti dengan path logo: "assets/logo/nsv-academy.png"
+    name: "NSV Academy",
+    subtitle: "Learning Management System (LMS)",
+    tagline: "Platform Pelatihan & Sertifikasi SDM Terintegrasi untuk Organisasi Modern",
+    short_desc: "Platform LMS berbasis Frappe yang dirancang khusus untuk membantu organisasi mengelola program pelatihan, mendistribusikan materi pembelajaran, melacak progres karyawan, dan menerbitkan sertifikasi dalam satu sistem terintegrasi.",
+    external_url: "https://lms.nsvisitama.id",
+    external_label: "Kunjungi Platform",
+    description: `
+      <p class="mb-4">NSV Academy adalah solusi Learning Management System (LMS) yang dikembangkan di atas platform Frappe - framework open-source kelas enterprise yang telah dipercaya oleh ribuan organisasi di seluruh dunia.</p>
+      <p class="mb-4">Berbeda dengan LMS generik yang memaksakan alur pembelajaran yang kaku, NSV Academy dapat dikonfigurasi sesuai kebutuhan spesifik organisasi Anda - mulai dari struktur kurikulum, metode penilaian, hingga desain sertifikat yang mencerminkan identitas brand perusahaan.</p>
+      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Mengapa NSV Academy?</h3>
+      <ul class="space-y-3 text-gray-600">        
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Dukungan multi-format konten: video, dokumen, kuis interaktif, dan webinar</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Sertifikat digital otomatis setelah peserta menyelesaikan program pelatihan</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Dashboard analytics real-time untuk memantau efektivitas program pelatihan</span></li>
+      </ul>
+      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Cocok untuk</h3>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="flex items-center gap-2 bg-gray-50 rounded-xl p-3 text-sm text-gray-700"><i class="ph ph-buildings text-primary"></i> Perusahaan korporat</div>
+        <div class="flex items-center gap-2 bg-gray-50 rounded-xl p-3 text-sm text-gray-700"><i class="ph ph-graduation-cap text-primary"></i> Lembaga pendidikan</div>
+        <div class="flex items-center gap-2 bg-gray-50 rounded-xl p-3 text-sm text-gray-700"><i class="ph ph-certificate text-primary"></i> Lembaga sertifikasi</div>
+        <div class="flex items-center gap-2 bg-gray-50 rounded-xl p-3 text-sm text-gray-700"><i class="ph ph-users text-primary"></i> Asosiasi profesi</div>
+      </div>
+    `,
+    packages: [
+      {
+        name: "LMS ECOHUB Standard",
+        icon: "ph-graduation-cap",
+        desc: "Akses platform LMS ECOHUB untuk pelatihan karyawan internal. Minimum order 50 user, cocok untuk perusahaan yang baru memulai digitalisasi program pelatihan.",
+        features: [
+          "Minimum 50 user",
+          "Rp 350.000 / user / tahun",
+          "Manajemen konten pelatihan",
+          "Tracking progress karyawan",
+          "Sertifikasi digital otomatis",
+          "Dashboard analytics",
+          "Support via email"
+        ]
+      },
+      {
+        name: "LMS Kelas APJII",
+        icon: "ph-wifi-high",
+        desc: "Akses LMS dengan konten spesialis industri ISP/Telekomunikasi, dikurasi bersama APJII. Untuk perusahaan di sektor telekomunikasi dan internet service provider.",
+        features: [
+          "Rp 350.000 / user / tahun",
+          "Konten spesifik ISP/Telko",
+          "Dikurasi bersama APJII",
+          "Pelatihan teknikal & regulasi",
+          "Standar industri telekomunikasi",
+          "Sertifikasi digital"
+        ]
+      },
+      {
+        name: "Custom LMS Enterprise",
+        icon: "ph-buildings",
+        desc: "Solusi LMS enterprise dengan kustomisasi penuh sesuai kebutuhan organisasi besar: branding, modul khusus, integrasi sistem HR/ERP, dan dedicated support.",
+        features: [
+          "Pengguna tidak terbatas",
+          "Custom branding & domain",
+          "Integrasi ERP & HR sistem",
+          "Modul pelatihan custom",
+          "Multi-tenant support",
+          "Dedicated support engineer",
+          "Harga sesuai scope - hubungi kami"
+        ]
+      }
+    ],
+    highlights: [
+      { icon: "ph-users", label: "Multi-User", desc: "Kelola ratusan hingga ribuan pengguna" },
+      { icon: "ph-certificate", label: "Sertifikasi Digital", desc: "Otomatis setelah kursus selesai" },
+      { icon: "ph-chart-line-up", label: "Analytics", desc: "Pantau efektivitas pelatihan" },
+      { icon: "ph-plug", label: "Integrasi ERP", desc: "Sinkron dengan ERPNext" },
+    ]
+  },
+  "sop-templates": {
+    icon: "ph-file-text",
+    logo: null,
+    name: "SOP Templates",
+    subtitle: "Standard Operating Procedure Templates",
+    tagline: "Template SOP Siap Pakai untuk Standarisasi Operasional Bisnis",
+    short_desc: "Kumpulan template Standard Operating Procedure yang dirancang oleh tim ahli berpengalaman, siap digunakan untuk membantu bisnis membangun alur kerja yang jelas, konsisten, dan patuh terhadap standar industri.",
+    external_url: null,
+    external_label: null,
+    description: `
+      <p class="mb-4">SOP (Standard Operating Procedure) yang baik adalah fondasi dari operasional bisnis yang efisien dan konsisten. Namun, menyusun SOP dari nol membutuhkan waktu, keahlian, dan pemahaman mendalam tentang standar industri yang berlaku.</p>
+      <p class="mb-4">NSV SOP Templates hadir sebagai solusi praktis - kumpulan template yang telah dirancang secara profesional oleh tim konsultan berpengalaman, mencakup berbagai fungsi bisnis dari HR, keuangan, operasional, hingga teknologi informasi.</p>
+      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Manfaat Menggunakan SOP Templates NSV</h3>
+      <ul class="space-y-3 text-gray-600">
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Hemat waktu - tidak perlu membuat dari nol, tinggal sesuaikan dengan kondisi perusahaan</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Berbasis best practice - mengikuti standar industri dan kepatuhan regulasi yang berlaku</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Format profesional - siap digunakan langsung atau sebagai dasar untuk kustomisasi lanjutan</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Mendukung sertifikasi ISO - template dirancang selaras dengan persyaratan ISO 9001 dan ISO 27001</span></li>
+      </ul>
+      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Kategori Template Tersedia</h3>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="flex items-center gap-2 bg-gray-50 rounded-xl p-3 text-sm text-gray-700"><i class="ph ph-users text-primary"></i> Human Resources</div>
+        <div class="flex items-center gap-2 bg-gray-50 rounded-xl p-3 text-sm text-gray-700"><i class="ph ph-calculator text-primary"></i> Finance & Accounting</div>
+        <div class="flex items-center gap-2 bg-gray-50 rounded-xl p-3 text-sm text-gray-700"><i class="ph ph-gear text-primary"></i> Operations</div>
+        <div class="flex items-center gap-2 bg-gray-50 rounded-xl p-3 text-sm text-gray-700"><i class="ph ph-cpu text-primary"></i> Information Technology</div>
+        <div class="flex items-center gap-2 bg-gray-50 rounded-xl p-3 text-sm text-gray-700"><i class="ph ph-storefront text-primary"></i> Sales & Marketing</div>
+        <div class="flex items-center gap-2 bg-gray-50 rounded-xl p-3 text-sm text-gray-700"><i class="ph ph-shield text-primary"></i> Compliance & Legal</div>
+      </div>
+    `,
+    packages: [
+      {
+        name: "Paket Fondasi Bisnis",
+        icon: "ph-house",
+        desc: "Pembangunan fondasi operasional UMKM: penyusunan SOP dasar, struktur organisasi, sistem pembukuan sederhana, dan standar layanan pelanggan untuk mendukung pertumbuhan terstruktur.",
+        features: [
+          "Rp 10.000.000",
+          "Penyusunan SOP dasar",
+          "Perancangan struktur organisasi",
+          "Sistem pembukuan sederhana",
+          "Standar layanan pelanggan",
+          "Cocok untuk UMKM berkembang"
+        ]
+      },
+      {
+        name: "Template SOP ISO",
+        icon: "ph-files",
+        desc: "Paket template dokumen SOP standar ISO siap pakai: template kebijakan mutu, prosedur operasional, formulir rekam mutu, dan panduan implementasi.",
+        features: [
+          "Rp 2.500.000 / paket",
+          "Template kebijakan mutu",
+          "Template prosedur operasional",
+          "Formulir rekam mutu",
+          "Panduan implementasi",
+          "Format Word & PDF",
+          "Selaras ISO 9001"
+        ]
+      },
+      {
+        name: "Full Management System",
+        icon: "ph-chart-bar",
+        desc: "Pembangunan sistem manajemen operasional penuh untuk seluruh organisasi - mencakup process mapping, SOP komprehensif, KPI framework, dan persiapan sertifikasi ISO.",
+        features: [
+          "Harga custom sesuai scope",
+          "Audit & gap analysis menyeluruh",
+          "Process mapping enterprise",
+          "100+ dokumen SOP & kebijakan",
+          "KPI framework & dashboard",
+          "Pendampingan implementasi penuh",
+          "Persiapan sertifikasi ISO 9001"
+        ]
+      }
+    ],
+    highlights: [
+      { icon: "ph-files", label: "100+ Template", desc: "Berbagai fungsi bisnis" },
+      { icon: "ph-clock", label: "Hemat Waktu", desc: "Siap pakai, tinggal sesuaikan" },
+      { icon: "ph-seal-check", label: "ISO-Ready", desc: "Selaras standar ISO 9001" },
+      { icon: "ph-pencil", label: "Customizable", desc: "Mudah disesuaikan" },
+    ]
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const productId = params.get('id') || 'nsv-academy';
+const product = PRODUCT_DATA[productId] || PRODUCT_DATA['nsv-academy'];
+
+document.title = product.name + ' - PT Nararya Semesta Visitama';
+</script>
+
+<!-- ── Hero ───────────────────────────────────────────────────────────────── -->
+<section class="hero-gradient py-24 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+      <div class="flex-shrink-0">
+        <div class="w-28 h-28 bg-white/15 backdrop-blur rounded-3xl flex items-center justify-center border border-white/20 shadow-2xl" id="hero-icon-wrapper"></div>
+      </div>
+      <div class="text-center lg:text-left">
+        <p class="text-white/60 text-sm font-semibold uppercase tracking-widest mb-2" id="hero-subtitle"></p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4" id="hero-name"></h1>
+        <p class="text-white/80 text-lg max-w-2xl" id="hero-tagline"></p>
+        <div class="flex flex-wrap gap-3 mt-8 justify-center lg:justify-start">
+          <a href="#description" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-primary rounded-full font-semibold text-sm hover:bg-gray-100 transition-all shadow-md">
+            Selengkapnya <i class="ph ph-arrow-down"></i>
+          </a>
+          <span id="external-btn-wrapper"></span>
+          <a href="#Contact-Us" onclick="scrollToContact(event)"
+             class="inline-flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/30 text-white rounded-full font-semibold text-sm hover:bg-white/20 transition-all">
+            <i class="ph ph-chat-dots"></i> Hubungi Kami
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Breadcrumb ─────────────────────────────────────────────────────────── -->
+<div class="bg-gray-50 border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <nav class="flex items-center gap-2 text-sm text-gray-500">
+      <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+      <i class="ph ph-caret-right text-xs"></i>
+      <a href="index.html#Products" class="hover:text-primary transition-colors">Products</a>
+      <i class="ph ph-caret-right text-xs"></i>
+      <span class="text-gray-900 font-medium" id="breadcrumb-name"></span>
+    </nav>
+  </div>
+</div>
+
+<!-- ── Highlights ─────────────────────────────────────────────────────────── -->
+<section class="py-10 bg-white border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="highlights-grid"></div>
+  </div>
+</section>
+
+<!-- ── Short Description ──────────────────────────────────────────────────── -->
+<section class="py-12 bg-gray-50 border-b border-gray-100">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <p class="text-lg md:text-xl text-secondary leading-relaxed" id="short-desc"></p>
+  </div>
+</section>
+
+<!-- ── Full Description ───────────────────────────────────────────────────── -->
+<section id="description" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2">
+        <p class="text-primary font-bold tracking-widest uppercase text-xs mb-3">Tentang Produk Ini</p>
+        <h2 class="text-3xl font-bold text-gray-900 mb-8" id="desc-heading"></h2>
+        <div class="prose prose-lg text-gray-600 leading-relaxed" id="full-description"></div>
+      </div>
+      <div>
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 sticky top-28">
+          <h3 class="font-bold text-gray-900 mb-4">Tertarik dengan produk ini?</h3>
+          <p class="text-sm text-gray-500 mb-6">Hubungi kami untuk demo, informasi harga, atau konsultasi kebutuhan spesifik Anda.</p>
+          <a href="#Contact-Us" onclick="scrollToContact(event)"
+             class="block w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold py-3 rounded-xl transition-all shadow-sm hover:shadow-md mb-3">
+            Minta Demo / Info Harga
+          </a>
+          <span id="sidebar-external-btn"></span>
+          <div class="mt-6 pt-6 border-t border-gray-200">
+            <p class="text-xs text-gray-400 mb-3 font-semibold uppercase tracking-wider">Produk Lainnya</p>
+            <div class="space-y-2" id="other-products"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Packages ───────────────────────────────────────────────────────────── -->
+<section id="packages" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="text-primary font-bold tracking-widest uppercase text-xs mb-3">Pilihan Paket</p>
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Paket yang Tersedia</h2>
+      <p class="text-secondary">Hubungi kami untuk mendapatkan penawaran harga yang disesuaikan dengan skala dan kebutuhan organisasi Anda.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="packages-grid"></div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────────────────────── -->
+<section class="py-16 bg-white border-t border-gray-100">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold text-gray-900 mb-4">Mulai Transformasi Digital Anda</h2>
+    <p class="text-secondary text-lg mb-8">Diskusikan kebutuhan spesifik organisasi Anda bersama tim kami. Konsultasi awal gratis.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="#Contact-Us" onclick="scrollToContact(event)"
+         class="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-full transition-all shadow-md text-base">
+        <i class="ph ph-chat-dots text-xl"></i> Hubungi Kami
+      </a>
+      <span id="cta-external-btn"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+// Render hero
+document.getElementById('hero-icon-wrapper').innerHTML = `<i class="ph ${product.icon} text-white text-5xl"></i>`;
+document.getElementById('hero-name').textContent = product.name;
+document.getElementById('hero-subtitle').textContent = product.subtitle;
+document.getElementById('hero-tagline').textContent = product.tagline;
+document.getElementById('breadcrumb-name').textContent = product.name;
+document.getElementById('short-desc').textContent = product.short_desc;
+document.getElementById('desc-heading').textContent = product.name;
+document.getElementById('full-description').innerHTML = product.description;
+
+// External URL buttons
+if (product.external_url) {
+  const btn = `<a href="${product.external_url}" target="_blank" rel="noopener"
+    class="inline-flex items-center gap-2 px-6 py-3 bg-white text-primary rounded-full font-semibold text-sm hover:bg-gray-100 transition-all shadow-md">
+    <i class="ph ph-arrow-up-right"></i> ${product.external_label}
+  </a>`;
+  document.getElementById('external-btn-wrapper').innerHTML = btn;
+  document.getElementById('sidebar-external-btn').innerHTML = `<a href="${product.external_url}" target="_blank"
+    class="block w-full text-center border border-gray-200 hover:border-primary text-gray-600 hover:text-primary font-semibold py-3 rounded-xl transition-all mb-3 text-sm">
+    <i class="ph ph-arrow-up-right mr-1"></i>${product.external_label}
+  </a>`;
+  document.getElementById('cta-external-btn').innerHTML = `<a href="${product.external_url}" target="_blank"
+    class="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold rounded-full transition-all text-base">
+    <i class="ph ph-arrow-up-right text-xl"></i> ${product.external_label}
+  </a>`;
+}
+
+// Render highlights
+const hGrid = document.getElementById('highlights-grid');
+product.highlights.forEach(h => {
+  hGrid.innerHTML += `
+    <div class="text-center p-4">
+      <div class="w-12 h-12 bg-red-50 text-primary rounded-xl flex items-center justify-center mx-auto mb-3">
+        <i class="ph ${h.icon} text-2xl"></i>
+      </div>
+      <p class="font-semibold text-gray-900 text-sm">${h.label}</p>
+      <p class="text-gray-500 text-xs mt-1">${h.desc}</p>
+    </div>`;
+});
+
+// Render packages
+const grid = document.getElementById('packages-grid');
+product.packages.forEach(pkg => {
+  grid.innerHTML += `
+    <div class="package-card bg-white rounded-2xl p-8 border border-gray-100 shadow-soft hover:border-red-100 flex flex-col">
+      <div class="w-12 h-12 bg-red-50 text-primary rounded-xl flex items-center justify-center mb-5">
+        <i class="ph ${pkg.icon} text-2xl"></i>
+      </div>
+      <h3 class="text-lg font-bold text-gray-900 mb-3">${pkg.name}</h3>
+      <p class="text-secondary text-sm mb-5 flex-grow">${pkg.desc}</p>
+      <ul class="space-y-2 mb-6">
+        ${pkg.features.map(f => `
+          <li class="flex items-center gap-2 text-sm text-gray-600">
+            <i class="ph ph-check text-primary flex-shrink-0"></i>${f}
+          </li>`).join('')}
+      </ul>
+      <a href="#Contact-Us" onclick="scrollToContact(event)"
+         class="block w-full text-center border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 rounded-xl transition-all text-sm">
+        Tanyakan Harga
+      </a>
+    </div>`;
+});
+
+// Other products sidebar
+const others = document.getElementById('other-products');
+Object.entries(PRODUCT_DATA).forEach(([id, p]) => {
+  if (id === productId) return;
+  others.innerHTML += `<a href="product-detail.html?id=${id}" class="flex items-center gap-2 text-sm text-gray-500 hover:text-primary transition-colors py-1">
+    <i class="ph ${p.icon} text-base"></i>${p.name}
+  </a>`;
+});
+
+function scrollToContact(e) {
+  e.preventDefault();
+  const c = document.getElementById('Contact-Us');
+  if (c) c.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+
+<script src="footer-loader.js"></script>
+</body>
+</html>

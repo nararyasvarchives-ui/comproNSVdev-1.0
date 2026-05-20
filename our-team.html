@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team - PT Nararya Semesta Visitama</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#A11E21',
+            'primary-dark': '#831618',
+            secondary: '#7F7F7F',
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(0,0,0,0.05)',
+            'card': '0 10px 30px -5px rgba(0,0,0,0.08)',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    section { scroll-margin-top: 100px; }
+
+    /* Photo frame effect */
+    .team-photo {
+      position: relative;
+    }
+    .team-photo::before {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: 2rem;
+      background: linear-gradient(135deg, #A11E21, #7d0f14);
+      z-index: -1;
+      opacity: 0.15;
+    }
+    .team-photo img {
+      border-radius: 1.75rem;
+      object-fit: cover;
+    }
+
+    /* VM card style (same as homepage) */
+    .vm-card {
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .vm-card::before {
+      content: "";
+      position: absolute;
+      top: -30%; left: -60%;
+      width: 60%; height: 160%;
+      background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0) 100%);
+      transform: rotate(10deg) translateX(-120%);
+      pointer-events: none;
+      opacity: 0;
+      z-index: 2;
+    }
+    .vm-card > * { position: relative; z-index: 3; }
+    .vm-card:hover::before { animation: vm-shine .9s ease-out forwards; opacity: 1; }
+    .vm-card:hover { transform: translateY(-6px); box-shadow: 0 18px 35px rgba(0,0,0,0.12); }
+    @keyframes vm-shine {
+      0% { transform: rotate(10deg) translateX(-120%); }
+      100% { transform: rotate(10deg) translateX(260%); }
+    }
+
+    @keyframes reveal {
+      from { transform: translateY(110%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+<script src="navbar-loader.js"></script>
+
+<!-- ── Hero / Intro Section ───────────────────────────────────────────────── -->
+<section class="py-16 bg-white border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row items-center gap-16">
+
+      <!-- Photo (kiri) -->
+      <div class="w-full lg:w-5/12 flex justify-center">
+        <div class="team-photo w-full max-w-md">
+          <!-- ── GANTI FOTO DI SINI ── -->
+          <img
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+            alt="Tim NSV"
+            class="w-full h-[420px] shadow-2xl ring-1 ring-black/10"
+          >
+          <!-- ── END FOTO ── -->
+        </div>
+      </div>
+
+      <!-- Text (kanan) -->
+      <div class="w-full lg:w-7/12">
+        <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-3">Our Team</h2>
+        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+          Profesional Berpengalaman yang Berkomitmen pada Hasil Nyata
+        </h3>
+        <p class="text-secondary text-lg mb-8 leading-relaxed">
+          Di balik setiap solusi yang kami hadirkan, terdapat tim profesional yang berdedikasi - dengan latar belakang yang beragam namun satu tujuan: membantu bisnis klien tumbuh secara berkelanjutan.
+        </p>
+        <p class="text-secondary text-base mb-8 leading-relaxed">
+          Tim NSV terdiri dari praktisi berpengalaman di bidang strategi bisnis, keuangan, hukum, teknologi informasi, dan sumber daya manusia. Setiap anggota tim membawa perspektif unik dan keahlian mendalam yang saling melengkapi dalam setiap proyek yang kami tangani.
+        </p>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-6">
+          <div>
+            <p class="text-3xl font-bold text-primary">20+</p>
+            <p class="text-secondary text-sm mt-1">Tahun Pengalaman</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-primary">50+</p>
+            <p class="text-secondary text-sm mt-1">Project Selesai</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-primary">99+</p>
+            <p class="text-secondary text-sm mt-1">Klien Aktif</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Core Values ────────────────────────────────────────────────────────── -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-3">Nilai Kami</h2>
+      <h3 class="text-3xl font-bold text-gray-900">Prinsip yang Menggerakkan Tim Kami</h3>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="vm-card group bg-gradient-to-br from-primary to-primary-dark text-white rounded-[2rem] p-8 shadow-soft transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-white/20 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 transition-all">
+            <i class="ph ph-star text-2xl text-white"></i>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-white mb-2">Excellence</h4>
+            <p class="text-white/85 leading-relaxed">Kami berkomitmen untuk memberikan hasil terbaik di setiap pekerjaan, bukan sekadar memenuhi ekspektasi tetapi melampaui-nya.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vm-card group bg-gradient-to-br from-primary to-primary-dark text-white rounded-[2rem] p-8 shadow-soft transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-white/20 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 transition-all">
+            <i class="ph ph-handshake text-2xl text-white"></i>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-white mb-2">Integrity</h4>
+            <p class="text-white/85 leading-relaxed">Kejujuran dan transparansi adalah dasar dari setiap hubungan dengan klien. Kami selalu berbicara jujur, bahkan ketika itu sulit.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vm-card group bg-gradient-to-br from-primary to-primary-dark text-white rounded-[2rem] p-8 shadow-soft transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-white/20 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 transition-all">
+            <i class="ph ph-lightning text-2xl text-white"></i>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-white mb-2">Innovation</h4>
+            <p class="text-white/85 leading-relaxed">Kami terus belajar dan beradaptasi dengan perkembangan terbaru untuk menghadirkan solusi yang relevan dan berdampak.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Team Members ───────────────────────────────────────────────────────── -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-3">Tim Kami</h2>
+      <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Kenali Para Profesional di Balik NSV</h3>
+      <p class="text-secondary">Setiap anggota tim kami membawa keahlian dan dedikasi yang tinggi dalam mendukung pertumbuhan bisnis klien.</p>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- TEAM MEMBER 1 - Foto KIRI -->
+    <!-- ================================================================== -->
+    <div class="flex flex-col lg:flex-row items-center gap-16 mb-24">
+      <!-- Foto -->
+      <div class="w-full lg:w-5/12 flex justify-center">
+        <div class="team-photo w-full max-w-sm">
+          <!-- ── GANTI FOTO ── -->
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+               alt="[Nama Anggota Tim 1]"
+               class="w-full h-[380px] shadow-xl">
+        </div>
+      </div>
+      <!-- Info -->
+      <div class="w-full lg:w-7/12">
+        <!-- ── EDIT INFO TIM 1 DI SINI ── -->
+        <p class="text-primary font-semibold text-sm uppercase tracking-wider mb-2">Founder & CEO</p>
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">[Nama Lengkap]</h3>
+        <p class="text-secondary mb-6">[Gelar / Sertifikasi, misal: S.E., MBA., CPMA]</p>
+        <div class="w-10 h-1 rounded-full bg-primary mb-6"></div>
+        <p class="text-secondary text-base mb-4 leading-relaxed">
+          [Deskripsi singkat latar belakang - misalnya: Berpengalaman lebih dari 20 tahun di bidang konsultansi bisnis dan pengembangan organisasi. Sebelum mendirikan NSV, beliau menjabat sebagai Senior Consultant di beberapa firma konsultan terkemuka di Indonesia.]
+        </p>
+        <p class="text-secondary text-base mb-6 leading-relaxed">
+          [Deskripsi tambahan atau spesialisasi - misalnya: Spesialisasi dalam business development, merger & acquisition, dan transformasi organisasi untuk perusahaan skala menengah hingga enterprise.]
+        </p>
+        <!-- Expertise tags -->
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 1]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 2]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 3]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 4]</span>
+        </div>
+        <!-- ── END EDIT TIM 1 ── -->
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-24"></div>
+
+    <!-- ================================================================== -->
+    <!-- TEAM MEMBER 2 - Foto KANAN -->
+    <!-- ================================================================== -->
+    <div class="flex flex-col lg:flex-row-reverse items-center gap-16 mb-24">
+      <!-- Foto -->
+      <div class="w-full lg:w-5/12 flex justify-center">
+        <div class="team-photo w-full max-w-sm">
+          <!-- ── GANTI FOTO ── -->
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+               alt="[Nama Anggota Tim 2]"
+               class="w-full h-[380px] shadow-xl">
+        </div>
+      </div>
+      <!-- Info -->
+      <div class="w-full lg:w-7/12">
+        <!-- ── EDIT INFO TIM 2 DI SINI ── -->
+        <p class="text-primary font-semibold text-sm uppercase tracking-wider mb-2">Director of Finance & Tax</p>
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">[Nama Lengkap]</h3>
+        <p class="text-secondary mb-6">[Gelar / Sertifikasi, misal: S.E., Ak., CA., BKP]</p>
+        <div class="w-10 h-1 rounded-full bg-primary mb-6"></div>
+        <p class="text-secondary text-base mb-4 leading-relaxed">
+          [Deskripsi singkat latar belakang - misalnya: Akuntan publik bersertifikat dengan pengalaman lebih dari 15 tahun di bidang akuntansi, perpajakan, dan audit. Pernah berkarir di Kantor Akuntan Publik Big Four sebelum bergabung dengan NSV.]
+        </p>
+        <p class="text-secondary text-base mb-6 leading-relaxed">
+          [Deskripsi tambahan - misalnya: Memiliki keahlian khusus dalam tax planning, transfer pricing, dan pendampingan sengketa pajak untuk perusahaan multinasional maupun lokal.]
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 1]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 2]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 3]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 4]</span>
+        </div>
+        <!-- ── END EDIT TIM 2 ── -->
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-24"></div>
+
+    <!-- ================================================================== -->
+    <!-- TEAM MEMBER 3 - Foto KIRI -->
+    <!-- ================================================================== -->
+    <div class="flex flex-col lg:flex-row items-center gap-16 mb-24">
+      <div class="w-full lg:w-5/12 flex justify-center">
+        <div class="team-photo w-full max-w-sm">
+          <!-- ── GANTI FOTO ── -->
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+               alt="[Nama Anggota Tim 3]"
+               class="w-full h-[380px] shadow-xl">
+        </div>
+      </div>
+      <div class="w-full lg:w-7/12">
+        <!-- ── EDIT INFO TIM 3 DI SINI ── -->
+        <p class="text-primary font-semibold text-sm uppercase tracking-wider mb-2">Head of IT Consulting</p>
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">[Nama Lengkap]</h3>
+        <p class="text-secondary mb-6">[Gelar / Sertifikasi, misal: S.Kom., M.T., CISA]</p>
+        <div class="w-10 h-1 rounded-full bg-primary mb-6"></div>
+        <p class="text-secondary text-base mb-4 leading-relaxed">
+          [Deskripsi singkat - misalnya: Software engineer dan IT consultant dengan pengalaman lebih dari 12 tahun dalam pengembangan sistem enterprise, implementasi ERP, dan keamanan siber.]
+        </p>
+        <p class="text-secondary text-base mb-6 leading-relaxed">
+          [Deskripsi tambahan - misalnya: Telah berhasil memimpin lebih dari 30 proyek implementasi ERP dan pengembangan sistem informasi untuk klien di sektor manufaktur, ritel, dan jasa keuangan.]
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 1]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 2]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 3]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 4]</span>
+        </div>
+        <!-- ── END EDIT TIM 3 ── -->
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-24"></div>
+
+    <!-- ================================================================== -->
+    <!-- TEAM MEMBER 4 - Foto KANAN -->
+    <!-- ================================================================== -->
+    <div class="flex flex-col lg:flex-row-reverse items-center gap-16 mb-8">
+      <div class="w-full lg:w-5/12 flex justify-center">
+        <div class="team-photo w-full max-w-sm">
+          <!-- ── GANTI FOTO ── -->
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+               alt="[Nama Anggota Tim 4]"
+               class="w-full h-[380px] shadow-xl">
+        </div>
+      </div>
+      <div class="w-full lg:w-7/12">
+        <!-- ── EDIT INFO TIM 4 DI SINI ── -->
+        <p class="text-primary font-semibold text-sm uppercase tracking-wider mb-2">Head of HR & Certification</p>
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">[Nama Lengkap]</h3>
+        <p class="text-secondary mb-6">[Gelar / Sertifikasi, misal: S.Psi., CHRP., IRCA Lead Auditor]</p>
+        <div class="w-10 h-1 rounded-full bg-primary mb-6"></div>
+        <p class="text-secondary text-base mb-4 leading-relaxed">
+          [Deskripsi singkat - misalnya: HR specialist dan certified lead auditor ISO dengan pengalaman lebih dari 10 tahun dalam pengembangan SDM, manajemen organisasi, dan pendampingan sertifikasi sistem manajemen.]
+        </p>
+        <p class="text-secondary text-base mb-6 leading-relaxed">
+          [Deskripsi tambahan - misalnya: Telah berhasil mendampingi lebih dari 20 perusahaan dalam meraih sertifikasi ISO 9001 dan ISO 27001, dengan track record keberhasilan 100% pada proses audit sertifikasi.]
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 1]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 2]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 3]</span>
+          <span class="inline-flex items-center gap-1.5 bg-red-50 text-primary text-xs font-medium px-3 py-1.5 rounded-full">[Keahlian 4]</span>
+        </div>
+        <!-- ── END EDIT TIM 4 ── -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Join Us CTA ────────────────────────────────────────────────────────── -->
+<section class="py-16 bg-gray-50 border-t border-gray-100">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="w-14 h-14 bg-red-50 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
+      <i class="ph ph-users-four text-3xl"></i>
+    </div>
+    <h2 class="text-3xl font-bold text-gray-900 mb-4">Bergabung dengan Tim NSV</h2>
+    <p class="text-secondary text-lg mb-8 max-w-2xl mx-auto">Kami selalu terbuka untuk kolaborasi dengan profesional berpengalaman yang memiliki semangat untuk membantu bisnis berkembang. Kirimkan profil Anda kepada kami.</p>
+    <a href="index.html#Contact-Us"
+       class="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-full transition-all shadow-md text-base">
+      <i class="ph ph-paper-plane-tilt text-xl"></i> Kirim Profil Anda
+    </a>
+  </div>
+</section>
+
+<script src="footer-loader.js"></script>
+</body>
+</html>
