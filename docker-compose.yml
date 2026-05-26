@@ -5,7 +5,7 @@ services:
     image: nginx:alpine
     container_name: nsv-landingpage
     ports:
-      - "9200:80"
+      - "9201:80"
     volumes:
       - .:/usr/share/nginx/html
     restart: always
