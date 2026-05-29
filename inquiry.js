@@ -139,11 +139,11 @@
                 <div class="nsv-inq-hint" id="hint-name">Please enter your name.</div>
               </div>
               <div class="nsv-inq-field">
-                <label class="nsv-inq-label" for="inq-wa">WhatsApp Number</label>
+                <label class="nsv-inq-label" for="inq-wa">WhatsApp Number <span class="req">*</span></label>
                 <input id="inq-wa" type="tel" class="nsv-inq-input" placeholder="e.g. +62 812-3456-7890">
               </div>
               <div class="nsv-inq-field">
-                <label class="nsv-inq-label" for="inq-email">Email Address</label>
+                <label class="nsv-inq-label" for="inq-email">Email Address <span class="req">*</span></label>
                 <input id="inq-email" type="email" class="nsv-inq-input" placeholder="e.g. john@company.com">
                 <div class="nsv-inq-hint" id="hint-email">Please enter a valid email address.</div>
               </div>
@@ -238,7 +238,14 @@
         document.getElementById('hint-name')?.classList.remove('show');
       }
 
-      if (email && !isValidEmail(email)) {
+      if (!wa) {
+        document.getElementById('inq-wa')?.classList.add('error');
+        valid = false;
+      } else {
+        document.getElementById('inq-wa')?.classList.remove('error');
+      }
+
+      if (!email || !isValidEmail(email)) {
         document.getElementById('inq-email')?.classList.add('error');
         document.getElementById('hint-email')?.classList.add('show');
         valid = false;
