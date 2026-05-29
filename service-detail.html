@@ -43,6 +43,8 @@
     }
   </style>
 </head>
+
+<script src="inquiry.js"></script>
 <body class="bg-white text-gray-800">
 
 <script src="navbar-loader.js"></script>
@@ -512,6 +514,22 @@ document.title = service.name + ' - PT Nararya Semesta Visitama';
   </div>
 </section>
 
+<!-- ── Full Inquiry Form ─────────────────────────────────────────────── -->
+<section class="py-20 bg-white border-t border-gray-100">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-primary font-bold tracking-widest uppercase text-xs mb-3">Get In Touch</p>
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Send Us an Inquiry</h2>
+      <p class="text-secondary">Fill in the form below and our team will respond within 1×24 business hours.</p>
+    </div>
+    <div id="nsv-full-inquiry-form-wrap" class="bg-gray-50 rounded-3xl p-8 md:p-12 border border-gray-100">
+      <div class="text-center text-gray-400 py-8">
+        <i class="ph ph-circle-notch text-3xl animate-spin"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── CTA Section ────────────────────────────────────────────────────────── -->
 <section class="py-16 bg-white border-t border-gray-100">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -552,10 +570,12 @@ service.packages.forEach(pkg => {
             <i class="ph ph-check text-primary flex-shrink-0"></i>${f}
           </li>`).join('')}
       </ul>
-      <a href="#Contact-Us" onclick="scrollToContact(event)"
-         class="block w-full text-center border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 rounded-xl transition-all text-sm">
+      <button type="button"
+        class="nsv-inquire-btn block w-full text-center border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 rounded-xl transition-all text-sm cursor-pointer"
+        data-service="${service.name}"
+        data-package="${pkg.name}">
         Inquire Now
-      </a>
+      </button>
     </div>
   `;
 });
