@@ -175,7 +175,10 @@
     Object.entries(payload).forEach(([k, v]) => { if (v != null && v !== '') params.append(k, v); });
     const resp = await fetch(INQUIRY_API, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-Frappe-CSRF-Token': 'fetch',
+      },
       body: params.toString(),
     });
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
