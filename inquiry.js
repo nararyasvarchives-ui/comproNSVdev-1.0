@@ -171,16 +171,11 @@
   }
 
   async function submitToFrappe(payload) {
-    const params = new URLSearchParams();
-    Object.entries(payload).forEach(([k, v]) => { if (v != null && v !== '') params.append(k, v); });
-    const resp = await fetch(INQUIRY_API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'X-Frappe-CSRF-Token': 'fetch',
-      },
-      body: params.toString(),
+    const url = new URL(INQUIRY_API);
+    Object.entries(payload).forEach(([k, v]) => {
+      if (v != null && v !== '') url.searchParams.append(k, v);
     });
+    const resp = await fetch(url.toString(), { method: 'GET' });
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const data = await resp.json();
     if (data.exc) throw new Error(data.exc);
