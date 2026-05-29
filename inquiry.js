@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  const FRAPPE      = 'http://91.108.104.170:3333';
+  const FRAPPE      = 'http://91.108.104.170:9201';
   const INQUIRY_API = `${FRAPPE}/api/method/nsv_compro.api.endpoints.submit_inquiry`;
   const PACKAGES_API= `${FRAPPE}/api/method/nsv_compro.api.endpoints.get_packages`;
   const SERVICES_API= `${FRAPPE}/api/method/nsv_compro.api.endpoints.get_services`;
