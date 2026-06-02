@@ -266,7 +266,7 @@
 
       try {
         await submitToFrappe({ full_name: name, email, phone: wa, whatsapp: wa,
-          message: builtMsg, source: 'popup',
+          message: builtMsg, source: 'form',
           ref_doctype: refType, ref_name: refName, package_name: pkgName });
 
         document.getElementById('nsv-inq-form-wrap').style.display = 'none';
@@ -442,7 +442,7 @@
 
       try {
         await submitToFrappe({ full_name: fullName, email, phone, whatsapp: wa,
-          job_title: job, company: comp, message: builtMsg, source: 'full_form',
+          job_title: job, company: comp, message: builtMsg, source: 'form',
           ref_doctype: refVal ? refType : null, ref_name: refVal || null,
           package_name: pkg || null, request_type: reqT || null });
 
