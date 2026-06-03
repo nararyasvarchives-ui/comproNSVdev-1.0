@@ -90,170 +90,41 @@
         <div class="contact-card p-8" style="background: linear-gradient(135deg, #7d0f14 0%, #a3161e 40%, #5b0c10 100%);">
           <h3 class="text-white font-bold text-2xl mb-6">Send Message</h3>
 
-          <form id="footer-contact-form" class="space-y-4" novalidate>
-            <!-- Row: Name + WhatsApp -->
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-white/80 text-sm font-medium mb-2">Full Name <span class="text-red-400">*</span></label>
-                <input id="fc-name" type="text" placeholder="John Doe" class="contact-input" required />
-              </div>
-              <div>
-                <label class="block text-white/80 text-sm font-medium mb-2">WhatsApp</label>
-                <input id="fc-wa" type="tel" placeholder="+62 812-3456" class="contact-input" />
-              </div>
+          <form class="space-y-4">
+            <div>
+              <label class="block text-white/80 text-sm font-medium mb-2">Full Name</label>
+              <input
+                type="text"
+                placeholder="John Doe"
+                class="contact-input"
+                required
+              />
             </div>
 
-            <!-- Email -->
             <div>
               <label class="block text-white/80 text-sm font-medium mb-2">Email Address</label>
-              <input id="fc-email" type="email" placeholder="john@example.com" class="contact-input" />
+              <input
+                type="email"
+                placeholder="john@example.com"
+                class="contact-input"
+                required
+              />
             </div>
 
-            <!-- Service / Product / Others -->
-            <div>
-              <label class="block text-white/80 text-sm font-medium mb-2">Topic / Service Interest</label>
-              <select id="fc-topic" class="contact-input cursor-pointer" style="appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 256 256'%3E%3Cpath d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;">
-                <option value="">— Select topic —</option>
-                <optgroup label="Services">
-                  <option value="Business Development|service">Business Development</option>
-                  <option value="Business Strategy|service">Business Strategy</option>
-                  <option value="Accounting, Tax & Legal|service">Accounting, Tax & Legal</option>
-                  <option value="Business Certification|service">Business Certification</option>
-                  <option value="Human Resources|service">Human Resources</option>
-                  <option value="IT Consulting|service">IT Consulting</option>
-                </optgroup>
-                <optgroup label="Products">
-                  <option value="NSV Academy|product">NSV Academy (LMS)</option>
-                  <option value="SOP Templates|product">SOP Templates</option>
-                </optgroup>
-                <optgroup label="Other">
-                  <option value="others|others">Others / General Inquiry</option>
-                </optgroup>
-              </select>
-            </div>
-
-            <!-- Package (dynamic, hidden if Others) -->
-            <div id="fc-pkg-wrap" style="display:none;">
-              <label class="block text-white/80 text-sm font-medium mb-2">Package</label>
-              <select id="fc-pkg" class="contact-input cursor-pointer" style="appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 256 256'%3E%3Cpath d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;">
-                <option value="">— Select package —</option>
-              </select>
-            </div>
-
-            <!-- Message -->
             <div>
               <label class="block text-white/80 text-sm font-medium mb-2">Message</label>
-              <textarea id="fc-msg" rows="4" placeholder="Tell us your needs or questions..." class="contact-textarea"></textarea>
+              <textarea
+                rows="5"
+                placeholder="Tell us your needs..."
+                class="contact-textarea"
+                required
+              ></textarea>
             </div>
 
-            <!-- Feedback -->
-            <div id="fc-feedback" style="display:none;padding:10px 14px;border-radius:8px;font-size:.85rem;"></div>
-
-            <button type="submit" id="fc-submit" class="btn-primary w-full">
+            <button type="submit" class="btn-primary w-full">
               Send Message
             </button>
           </form>
-
-          <script>
-          (function(){
-            const FRAPPE = 'http://91.108.104.170:9201';
-            const PKGS_API = FRAPPE + '/api/method/nsv_compro.api.endpoints.get_packages';
-            const SUB_API  = FRAPPE + '/api/method/nsv_compro.api.endpoints.submit_inquiry';
-
-            const STATIC_PACKAGES = {
-              'Business Development': ['UMKM Growth Starter','Medium Enterprise Accelerator','Advanced Strategic Expansion','Market Research','Value Proposition Analysis','Sales & Marketing Strategy','PT (Ltd) Establishment','CV (Partnership) Establishment','Business Plan (Standard)','Business Plan (Investor)'],
-              'Business Strategy': ['Business Foundation Package','Growth Acceleration Package','Strategic Transformation Package','Performance Evaluation','Business Monitoring (Retainer)','Business Ecosystem Analysis'],
-              'Accounting, Tax & Legal': ['Financial Planning & Analysis','Cost Reduction Strategy','Financial Risk Management','Monthly Tax Package','Annual Tax Package','Tax Training Brevet A&B'],
-              'Business Certification': ['Basic Awareness Consulting','ISO Preparation Consulting','Initial Certification Consulting','Surveillance Audit Consulting','Certification Renewal Consulting','ISO SOP Templates'],
-              'Human Resources': ['Course Pre-made','Custom Course'],
-              'IT Consulting': ['ECOHUB LMS Platform','APJII Class LMS Platform','ERP Implementation Consulting','Resource Sharing Platform'],
-              'NSV Academy': ['LMS ECOHUB Standard','LMS Kelas APJII','Custom LMS Enterprise'],
-              'SOP Templates': ['Business Foundation Package','ISO SOP Templates','Full Management System'],
-            };
-
-            const topicSel = document.getElementById('fc-topic');
-            const pkgWrap  = document.getElementById('fc-pkg-wrap');
-            const pkgSel   = document.getElementById('fc-pkg');
-
-            topicSel.addEventListener('change', function(){
-              const val = this.value;
-              if (!val || val.startsWith('others')) {
-                pkgWrap.style.display = 'none';
-                pkgSel.innerHTML = '<option value="">— Select package —</option>';
-                return;
-              }
-              const name = val.split('|')[0];
-              pkgWrap.style.display = 'block';
-              const pkgs = STATIC_PACKAGES[name] || [];
-              pkgSel.innerHTML = '<option value="">— Select package (optional) —</option>' +
-                pkgs.map(p => '<option value="' + p + '">' + p + '</option>').join('');
-            });
-
-            document.getElementById('footer-contact-form').addEventListener('submit', async function(e){
-              e.preventDefault();
-              const name  = document.getElementById('fc-name').value.trim();
-              const wa    = document.getElementById('fc-wa').value.trim();
-              const email = document.getElementById('fc-email').value.trim();
-              const topic = topicSel.value;
-              const pkg   = pkgSel.value;
-              const msg   = document.getElementById('fc-msg').value.trim();
-              const fb    = document.getElementById('fc-feedback');
-              const btn   = document.getElementById('fc-submit');
-
-              if (!name) {
-                fb.style.display = 'block';
-                fb.style.background = 'rgba(239,68,68,.15)';
-                fb.style.color = '#fca5a5';
-                fb.textContent = 'Please enter your full name.';
-                return;
-              }
-
-              btn.disabled = true;
-              btn.textContent = 'Sending...';
-              fb.style.display = 'none';
-
-              const topicName = topic ? topic.split('|')[0] : '';
-              const builtMsg  = [
-                topicName ? 'Topic: ' + topicName : '',
-                pkg       ? 'Package: ' + pkg    : '',
-                msg       ? 'Message: ' + msg    : '',
-              ].filter(Boolean).join(' | ') || 'General inquiry from footer form.';
-
-              try {
-                const url = new URL(SUB_API);
-                url.searchParams.set('full_name', name);
-                if (email) url.searchParams.set('email', email);
-                if (wa)    url.searchParams.set('phone', wa);
-                url.searchParams.set('message', builtMsg);
-                url.searchParams.set('source', 'form');
-                if (topicName && topicName !== 'others') {
-                  url.searchParams.set('ref_name', topicName);
-                }
-                if (pkg) url.searchParams.set('package_name', pkg);
-
-                const resp = await fetch(url.toString());
-                if (!resp.ok) throw new Error('HTTP ' + resp.status);
-                const data = await resp.json();
-                if (data.exc) throw new Error(data.exc);
-
-                fb.style.display = 'block';
-                fb.style.background = 'rgba(34,197,94,.15)';
-                fb.style.color = '#86efac';
-                fb.textContent = '✓ Message sent! Our team will get back to you shortly.';
-                document.getElementById('footer-contact-form').reset();
-                pkgWrap.style.display = 'none';
-              } catch(err) {
-                fb.style.display = 'block';
-                fb.style.background = 'rgba(239,68,68,.15)';
-                fb.style.color = '#fca5a5';
-                fb.textContent = 'Failed to send. Please try again or contact us directly.';
-              } finally {
-                btn.disabled = false;
-                btn.textContent = 'Send Message';
-              }
-            });
-          })();
-          </script>
         </div>
 
     </div>

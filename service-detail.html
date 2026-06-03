@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,25 +52,24 @@
 <!-- ── DATA SERVICE (edit bagian ini untuk ganti konten) ─────────────────── -->
 <script>
 // ============================================================
-// EDIT DATA DI SINI - sesuaikan per service
-// Ganti nilai berdasarkan service yang ingin ditampilkan
+// EDIT DATA HERE - customize per service
 // ============================================================
 const SERVICE_DATA = {
   "business-development": {
     icon: "ph-rocket-launch",
     name: "Business Development",
-    tagline: "Membangun Fondasi Pertumbuhan Bisnis yang Berkelanjutan",
+    tagline: "Building a Sustainable Foundation for Business Growth",
     short_desc: "Strategic initiatives to create value for the organization and stakeholders, build competitive advantage, and shape success before products or services are delivered.",
     description: `
-      <p class="mb-4">Business Development adalah proses strategis yang mencakup berbagai inisiatif untuk menciptakan nilai jangka panjang bagi organisasi melalui pelanggan, pasar, dan hubungan bisnis yang saling menguntungkan.</p>
-      <p class="mb-4">Tim kami telah membantu puluhan perusahaan di berbagai industri dalam merancang strategi ekspansi bisnis, mengidentifikasi peluang pasar baru, membangun kemitraan strategis, dan mengeksekusi rencana pertumbuhan yang terukur.</p>
-      <p class="mb-4">Kami tidak hanya memberikan rekomendasi - kami terlibat langsung dalam proses implementasi untuk memastikan setiap strategi yang dirancang benar-benar berjalan di lapangan.</p>
-      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Pendekatan Kami</h3>
+      <p class="mb-4">Business Development is a strategic process encompassing various initiatives to create long-term value for organizations through customers, markets, and mutually beneficial business relationships.</p>
+      <p class="mb-4">Our team has assisted dozens of companies across industries in designing business expansion strategies, identifying new market opportunities, building strategic partnerships, and executing measurable growth plans.</p>
+      <p class="mb-4">We don't just provide recommendations — we are directly involved in the implementation process to ensure every strategy we design actually works on the ground.</p>
+      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Our Approach</h3>
       <ul class="space-y-3 text-gray-600">
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Analisis mendalam terhadap kondisi bisnis, kompetitor, dan peluang pasar yang ada</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Penyusunan roadmap pertumbuhan yang realistis dan terukur sesuai kapasitas perusahaan</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Pendampingan eksekusi dan monitoring KPI secara berkala</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Fasilitasi networking dan pengembangan ekosistem kemitraan strategis</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>In-depth analysis of business conditions, competitors, and available market opportunities</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Development of realistic and measurable growth roadmaps aligned with company capacity</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Execution support and periodic KPI monitoring</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Networking facilitation and strategic partnership ecosystem development</span></li>
       </ul>
     `,
     packages: [
@@ -78,210 +77,210 @@ const SERVICE_DATA = {
         name: "UMKM Growth Starter",
         icon: "ph-plant",
         price: "Rp 5.000.000",
-        desc: "Paket konsultasi bisnis untuk UMKM tahap awal: analisis kondisi bisnis eksisting, identifikasi peluang pertumbuhan, penyusunan roadmap 90 hari, dan pendampingan implementasi strategi dasar.",
-        features: ["Analisis kondisi bisnis eksisting", "Identifikasi peluang pertumbuhan", "Roadmap 90 hari", "Pendampingan implementasi strategi dasar"]
+        desc: "Business consulting package for early-stage SMEs: existing business condition analysis, growth opportunity identification, 90-day roadmap, and basic strategy implementation support.",
+        features: ["Existing business condition analysis", "Growth opportunity identification", "90-day roadmap", "Basic strategy implementation support"]
       },
       {
         name: "Medium Enterprise Accelerator",
         icon: "ph-rocket-launch",
         price: "Rp 25.000.000",
-        desc: "Konsultasi intensif untuk perusahaan menengah: audit bisnis menyeluruh, optimasi proses operasional, strategi go-to-market, dan mentoring eksekutif untuk mendorong pertumbuhan terukur.",
-        features: ["Audit bisnis menyeluruh", "Optimasi proses operasional", "Go-to-market strategy", "Mentoring eksekutif", "KPI framework"]
+        desc: "Intensive consulting for mid-sized companies: comprehensive business audit, operational process optimization, go-to-market strategy, and executive mentoring to drive measurable growth.",
+        features: ["Comprehensive business audit", "Operational process optimization", "Go-to-market strategy", "Executive mentoring", "KPI framework"]
       },
       {
         name: "Advanced Strategic Expansion",
         icon: "ph-globe",
         price: "Custom (Min. Rp 100.000.000)",
-        desc: "Konsultasi premium untuk ekspansi nasional/internasional atau persiapan IPO: due diligence strategis, feasibility study multi-market, pengembangan ekosistem partnership, dan pendampingan eksekutif jangka panjang.",
-        features: ["Due diligence strategis", "Feasibility study multi-market", "Pengembangan ekosistem partnership", "Pendampingan eksekutif jangka panjang"]
+        desc: "Premium consulting for national/international expansion or IPO preparation: strategic due diligence, multi-market feasibility study, partnership ecosystem development, and long-term executive support.",
+        features: ["Strategic due diligence", "Multi-market feasibility study", "Partnership ecosystem development", "Long-term executive support"]
       },
       {
-        name: "Riset Pasar",
+        name: "Market Research",
         icon: "ph-magnifying-glass",
-        price: "Mulai Rp 7.500.000",
-        desc: "Desk research & primary research untuk memahami dinamika pasar, perilaku konsumen, lanskap kompetitor, dan peluang segmen baru. Output: laporan riset terstruktur dengan rekomendasi actionable.",
-        features: ["Desk & primary research", "Analisis perilaku konsumen", "Competitor landscape", "Peluang segmen baru", "Laporan rekomendasi actionable"]
+        price: "Rp 7.500.000",
+        desc: "Desk and primary research to understand market dynamics, consumer behavior, competitor landscape, and new segment opportunities. Output: structured research report with actionable recommendations.",
+        features: ["Desk & primary research", "Consumer behavior analysis", "Competitor landscape", "New segment opportunities", "Actionable recommendation report"]
       },
       {
-        name: "Analisis Proposisi Nilai",
+        name: "Value Proposition Analysis",
         icon: "ph-lightbulb",
         price: "Rp 5.000.000",
-        desc: "Analisis mendalam value proposition produk/jasa vs kompetitor: customer jobs mapping, pain/gain analysis, dan rekomendasi diferensiasi untuk meningkatkan daya saing.",
-        features: ["Customer jobs mapping", "Pain & gain analysis", "Competitor value comparison", "Rekomendasi diferensiasi"]
+        desc: "In-depth value proposition analysis vs competitors: customer jobs mapping, pain/gain analysis, and differentiation recommendations to strengthen competitiveness.",
+        features: ["Customer jobs mapping", "Pain & gain analysis", "Competitor value comparison", "Differentiation recommendations"]
       },
       {
-        name: "Strategi Penjualan & Pemasaran",
+        name: "Sales & Marketing Strategy",
         icon: "ph-trend-up",
         price: "Rp 12.500.000",
-        desc: "Penyusunan Sales Playbook + Digital Marketing Plan terintegrasi: penetapan target segmen, channel strategy, KPI penjualan, dan panduan eksekusi kampanye digital.",
-        features: ["Sales playbook", "Digital marketing plan", "Target segmen & channel strategy", "KPI penjualan", "Panduan eksekusi kampanye"]
+        desc: "Integrated Sales Playbook + Digital Marketing Plan: target segment definition, channel strategy, sales KPIs, and digital campaign execution guide.",
+        features: ["Sales playbook", "Digital marketing plan", "Target segment & channel strategy", "Sales KPIs", "Campaign execution guide"]
       },
       {
-        name: "Pendirian PT",
+        name: "PT (Ltd) Establishment",
         icon: "ph-buildings",
         price: "Rp 7.500.000",
-        desc: "Layanan lengkap pendirian Perseroan Terbatas: akta notaris, pengesahan Kemenkumham, pendaftaran NIB (OSS), NPWP perusahaan, dan konsultasi struktur kepemilikan saham.",
-        features: ["Akta notaris", "Pengesahan Kemenkumham", "Pendaftaran NIB (OSS)", "NPWP perusahaan", "Konsultasi struktur saham"]
+        desc: "Complete Limited Liability Company (PT) establishment: notarial deed, Ministry of Law ratification, NIB (OSS) registration, company tax ID, and share ownership structure consultation.",
+        features: ["Notarial deed", "Ministry of Law ratification", "NIB (OSS) registration", "Company tax ID (NPWP)", "Share ownership structure consultation"]
       },
       {
-        name: "Pendirian CV",
+        name: "CV (Partnership) Establishment",
         icon: "ph-briefcase",
         price: "Rp 4.500.000",
-        desc: "Layanan pendirian Commanditaire Vennootschap (CV) secara lengkap: akta notaris, pendaftaran NIB, NPWP usaha, dan panduan operasional dasar.",
-        features: ["Akta notaris", "Pendaftaran NIB", "NPWP usaha", "Panduan operasional dasar"]
+        desc: "Complete CV (Partnership) establishment: notarial deed, NIB registration, business tax ID, and basic operational guidelines.",
+        features: ["Notarial deed", "NIB registration", "Business tax ID (NPWP)", "Basic operational guidelines"]
       },
       {
         name: "Business Plan (Standard)",
         icon: "ph-file-text",
         price: "Rp 7.500.000",
-        desc: "Penyusunan business plan terstruktur untuk pengajuan kredit bank/KUR: profil bisnis, analisis pasar, proyeksi keuangan 3 tahun, dan rencana operasional sesuai standar lembaga keuangan.",
-        features: ["Profil bisnis & analisis pasar", "Proyeksi keuangan 3 tahun", "Rencana operasional", "Sesuai standar bank/KUR"]
+        desc: "Structured business plan for bank/KUR credit applications: business profile, market analysis, 3-year financial projections, and operational plan per financial institution standards.",
+        features: ["Business profile & market analysis", "3-year financial projections", "Operational plan", "Aligned with bank/KUR standards"]
       },
       {
         name: "Business Plan (Investor)",
         icon: "ph-presentation-chart",
         price: "Rp 15.000.000",
-        desc: "Business plan + pitch deck investor-grade dengan analisis valuasi bisnis, model monetisasi, strategi skalabilitas, dan proyeksi pertumbuhan komprehensif untuk VC/investor.",
-        features: ["Pitch deck investor-grade", "Analisis valuasi bisnis", "Model monetisasi", "Strategi skalabilitas", "Proyeksi pertumbuhan komprehensif"]
+        desc: "Investor-grade business plan + pitch deck with business valuation analysis, monetization model, scalability strategy, and comprehensive growth projections for VC/investors.",
+        features: ["Pitch deck investor-grade", "Business valuation analysis", "Monetization model", "Scalability strategy", "Comprehensive growth projections"]
       }
     ]
   },
   "business-strategy": {
     icon: "ph-compass",
     name: "Business Strategy",
-    tagline: "Merancang Strategi yang Menggerakkan Bisnis ke Level Berikutnya",
+    tagline: "Designing Strategies That Move Your Business to the Next Level",
     short_desc: "Helping your business grow sustainably through ideation, synthesis, analysis, networking, partnerships, and execution of new business plans.",
     description: `
-      <p class="mb-4">Layanan Business Strategy kami dirancang untuk membantu perusahaan merumuskan arah strategis yang jelas, realistis, dan bisa dieksekusi. Kami percaya bahwa strategi terbaik adalah yang lahir dari pemahaman mendalam terhadap kondisi internal perusahaan dan dinamika eksternal pasar.</p>
-      <p class="mb-4">Dengan pengalaman mendampingi berbagai klien dari sektor industri yang berbeda, tim konsultan kami mampu menghadirkan perspektif yang segar sekaligus berbasis data dalam setiap proses perumusan strategi.</p>
-      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Keunggulan Layanan Kami</h3>
+      <p class="mb-4">Our Business Strategy service is designed to help companies formulate a clear, realistic, and executable strategic direction. We believe the best strategy emerges from a deep understanding of the company's internal conditions and external market dynamics.</p>
+      <p class="mb-4">With experience supporting clients across diverse industries, our consulting team delivers fresh yet data-driven perspectives throughout every strategy formulation process.</p>
+      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Our Service Advantages</h3>
       <ul class="space-y-3 text-gray-600">
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Metodologi berbasis data dan best practice industri terkini</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Pendampingan dari perumusan hingga eksekusi strategi</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Workshop dan sesi fasilitasi dengan manajemen perusahaan</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Review dan penyesuaian strategi secara berkala</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Data-driven methodology aligned with current industry best practices</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>End-to-end support from strategy formulation to execution</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Workshops and facilitation sessions with company management</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Periodic strategy review and adjustment</span></li>
       </ul>
     `,
     packages: [
       {
-        name: "Paket Fondasi Bisnis",
+        name: "Business Foundation Package",
         icon: "ph-house",
         price: "Rp 10.000.000",
-        desc: "Pembangunan fondasi operasional UMKM: penyusunan SOP dasar, struktur organisasi, sistem pembukuan sederhana, dan standar layanan pelanggan untuk mendukung pertumbuhan terstruktur.",
-        features: ["Penyusunan SOP dasar", "Struktur organisasi", "Sistem pembukuan sederhana", "Standar layanan pelanggan"]
+        desc: "Building the operational foundation for SMEs: basic SOP development, organizational structure, simple bookkeeping system, and customer service standards to support structured growth.",
+        features: ["Basic SOP development", "Organizational structure", "Simple bookkeeping system", "Customer service standards"]
       },
       {
-        name: "Paket Akselerasi Pertumbuhan",
+        name: "Growth Acceleration Package",
         icon: "ph-rocket-launch",
         price: "Rp 25.000.000",
-        desc: "Konsultasi strategis untuk perusahaan mid-market: restrukturisasi organisasi, optimasi alur kerja lintas departemen, pengembangan sistem manajemen kinerja, dan strategi penetrasi pasar baru.",
-        features: ["Restrukturisasi organisasi", "Optimasi alur kerja lintas departemen", "Sistem manajemen kinerja", "Strategi penetrasi pasar baru"]
+        desc: "Strategic consulting for mid-market companies: organizational restructuring, cross-departmental workflow optimization, performance management system development, and new market penetration strategy.",
+        features: ["Organizational restructuring", "Cross-departmental workflow optimization", "Performance management system", "New market penetration strategy"]
       },
       {
-        name: "Paket Transformasi Strategis",
+        name: "Strategic Transformation Package",
         icon: "ph-shuffle",
         price: "Custom (Min. Rp 75.000.000)",
-        desc: "Change management & digital transformation korporasi menyeluruh: transformasi budaya organisasi, implementasi sistem baru, manajemen resistensi perubahan, dan program enablement seluruh level karyawan.",
-        features: ["Transformasi budaya organisasi", "Implementasi sistem baru", "Manajemen resistensi perubahan", "Program enablement karyawan"]
+        desc: "Comprehensive corporate change management & digital transformation: organizational culture transformation, new system implementation, change resistance management, and employee enablement at all levels.",
+        features: ["Organizational culture transformation", "New system implementation", "Change resistance management", "Employee enablement program"]
       },
       {
-        name: "Evaluasi Kinerja",
+        name: "Performance Evaluation",
         icon: "ph-chart-bar",
-        price: "Rp 3.500.000 / departemen",
-        desc: "Asesmen dan perancangan sistem KPI & OKR per departemen, disesuaikan dengan target strategis perusahaan. Output: framework KPI terukur beserta dashboard monitoring kinerja.",
-        features: ["KPI & OKR framework per dept", "Dashboard monitoring kinerja", "Alignment dengan target strategis"]
+        price: "Rp 3.500.000 / department",
+        desc: "Assessment and design of KPI & OKR systems per department, aligned with the company's strategic targets. Output: measurable KPI framework with a performance monitoring dashboard.",
+        features: ["KPI & OKR framework per department", "Performance monitoring dashboard", "Alignment with strategic targets"]
       },
       {
-        name: "Monitoring Bisnis (Retainer)",
+        name: "Business Monitoring (Retainer)",
         icon: "ph-eye",
-        price: "Rp 5.000.000 / bulan",
-        desc: "Pendampingan bisnis bulanan berkelanjutan: review kinerja rutin, identifikasi bottleneck operasional, rekomendasi penyesuaian strategi, dan akses konsultasi ad-hoc dengan konsultan senior.",
-        features: ["Review kinerja rutin bulanan", "Identifikasi bottleneck operasional", "Rekomendasi penyesuaian strategi", "Konsultasi ad-hoc konsultan senior"]
+        price: "Rp 5.000.000 / month",
+        desc: "Ongoing monthly business support: regular performance review, operational bottleneck identification, strategy adjustment recommendations, and ad-hoc access to senior consultants.",
+        features: ["Monthly routine performance review", "Operational bottleneck identification", "Strategy adjustment recommendations", "Ad-hoc senior consultant access"]
       },
       {
-        name: "Analisis Ekosistem Bisnis",
+        name: "Business Ecosystem Analysis",
         icon: "ph-graph",
         price: "Rp 8.000.000",
-        desc: "Pemetaan komprehensif ekosistem bisnis klien: analisis rantai pasok, lanskap kompetitor, peta peluang kemitraan strategis, dan identifikasi risiko eksternal.",
-        features: ["Analisis rantai pasok (supply chain)", "Competitor landscape", "Peta peluang kemitraan", "Identifikasi risiko eksternal"]
+        desc: "Comprehensive mapping of the client's business ecosystem: supply chain analysis, competitor landscape, strategic partnership opportunity map, and external risk identification.",
+        features: ["Supply chain analysis", "Competitor landscape", "Partnership opportunity map", "External risk identification"]
       }
     ]
   },
   "accounting-tax-legal": {
     icon: "ph-calculator",
     name: "Accounting, Tax & Legal",
-    tagline: "Kepatuhan, Profitabilitas, dan Perlindungan Hukum untuk Bisnis Anda",
+    tagline: "Compliance, Profitability, and Legal Protection for Your Business",
     short_desc: "Comprehensive accounting, tax, and legal services focused on profitability, legality, and growth. Guided by an expert team for stronger business decisions.",
     description: `
-      <p class="mb-4">Layanan Accounting, Tax & Legal kami menghadirkan solusi terpadu untuk kebutuhan keuangan, perpajakan, dan hukum perusahaan Anda. Dengan tim yang berpengalaman dan berlisensi, kami memastikan seluruh aspek keuangan dan kepatuhan bisnis Anda terkelola dengan baik.</p>
-      <p class="mb-4">Kami memahami bahwa pengelolaan keuangan yang sehat dan kepatuhan terhadap regulasi adalah fondasi dari bisnis yang berkelanjutan. Oleh karena itu, kami tidak hanya membantu dalam pelaporan, tetapi juga memberikan analisis dan rekomendasi yang mendukung pengambilan keputusan strategis.</p>
-      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Cakupan Layanan</h3>
+      <p class="mb-4">Our Accounting, Tax & Legal service provides an integrated solution for your company's financial, tax, and legal needs. With an experienced and licensed team, we ensure all aspects of your financial management and business compliance are well-handled.</p>
+      <p class="mb-4">We understand that sound financial management and regulatory compliance are the foundation of a sustainable business. We don't just assist with reporting — we also provide analysis and recommendations that support strategic decision-making.</p>
+      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Service Coverage</h3>
       <ul class="space-y-3 text-gray-600">
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Pembukuan dan laporan keuangan sesuai standar akuntansi berlaku</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Perencanaan dan pelaporan pajak yang efisien dan patuh regulasi</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Konsultasi dan penyusunan dokumen legal perusahaan</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Pendampingan dalam proses audit dan pemeriksaan pajak</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Bookkeeping and financial reporting in accordance with applicable accounting standards</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Efficient and regulatory-compliant tax planning and reporting</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Consultation and preparation of corporate legal documents</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Support throughout audit processes and tax examinations</span></li>
       </ul>
     `,
     packages: [
       {
-        name: "Perencanaan & Analisis Keuangan",
+        name: "Financial Planning & Analysis",
         icon: "ph-chart-line-up",
-        price: "Rp 3.500.000 / bulan",
-        desc: "Layanan bulanan: pembukuan terstruktur, penyusunan laporan keuangan (Neraca, L/R, Arus Kas), analisis rasio keuangan, dan rekomendasi perbaikan kesehatan finansial perusahaan.",
-        features: ["Pembukuan bulanan terstruktur", "Laporan Neraca, L/R, Arus Kas", "Analisis rasio keuangan", "Rekomendasi kesehatan finansial"]
+        price: "Rp 3.500.000 / month",
+        desc: "Monthly service: structured bookkeeping, financial statement preparation (Balance Sheet, P&L, Cash Flow), financial ratio analysis, and recommendations to improve company financial health.",
+        features: ["Structured monthly bookkeeping", "Balance Sheet, P&L, Cash Flow reports", "Financial ratio analysis", "Financial health recommendations"]
       },
       {
-        name: "Strategi Cost Reduction",
+        name: "Cost Reduction Strategy",
         icon: "ph-scissors",
-        price: "Success Fee 15–20% dari total penghematan",
-        desc: "Analisis menyeluruh struktur biaya perusahaan untuk mengidentifikasi pemborosan dan peluang efisiensi. Dibayar berdasarkan success fee dari total penghematan yang berhasil direalisasikan.",
-        features: ["Analisis struktur biaya menyeluruh", "Identifikasi pemborosan & inefisiensi", "Rencana efisiensi operasional", "Dibayar berbasis hasil nyata"]
+        price: "Success Fee 15–20% of total savings",
+        desc: "Comprehensive analysis of the company's cost structure to identify waste and efficiency opportunities. Paid based on a success fee from total savings realized.",
+        features: ["Comprehensive cost structure analysis", "Waste & inefficiency identification", "Operational efficiency plan", "Paid based on actual results"]
       },
       {
-        name: "Manajemen Risiko Keuangan",
+        name: "Financial Risk Management",
         icon: "ph-shield-warning",
         price: "Rp 5.000.000",
-        desc: "Audit internal ringan dan fraud risk assessment: evaluasi kontrol internal, identifikasi celah risiko keuangan, dan rekomendasi mitigasi berbasis best practice tata kelola keuangan.",
-        features: ["Audit internal ringan", "Fraud risk assessment", "Evaluasi kontrol internal", "Rekomendasi mitigasi risiko"]
+        desc: "Light internal audit and fraud risk assessment: internal control evaluation, financial risk gap identification, and mitigation recommendations based on financial governance best practices.",
+        features: ["Light internal audit", "Fraud risk assessment", "Internal control evaluation", "Risk mitigation recommendations"]
       },
       {
-        name: "Paket Perpajakan - Bulanan",
+        name: "Monthly Tax Package",
         icon: "ph-calendar",
-        price: "Rp 2.000.000 / bulan",
-        desc: "Pengelolaan kewajiban pajak bulanan lengkap: perhitungan & pelaporan SPT Masa (PPh 21, PPh 23, PPN), rekonsiliasi pajak, dan konsultasi compliance perpajakan berkelanjutan.",
-        features: ["SPT Masa (PPh 21, PPh 23, PPN)", "Rekonsiliasi pajak bulanan", "Konsultasi compliance perpajakan"]
+        price: "Rp 2.000.000 / month",
+        desc: "Complete monthly tax obligation management: calculation & filing of periodic tax returns (PPh 21, PPh 23, VAT), tax reconciliation, and ongoing tax compliance consultation.",
+        features: ["Periodic tax returns (PPh 21, PPh 23, VAT)", "Monthly tax reconciliation", "Tax compliance consultation"]
       },
       {
-        name: "Paket Perpajakan - Tahunan",
+        name: "Annual Tax Package",
         icon: "ph-receipt",
         price: "Rp 3.500.000",
-        desc: "Penyusunan dan pelaporan SPT Tahunan Badan (PPh Badan): rekonsiliasi fiskal, koreksi fiskal, dan strategi tax planning untuk meminimalkan beban pajak perusahaan secara legal.",
-        features: ["SPT Tahunan Badan (PPh Badan)", "Rekonsiliasi & koreksi fiskal", "Tax planning legal"]
+        desc: "Preparation and filing of Corporate Annual Tax Return: fiscal reconciliation, fiscal correction, and tax planning strategy to legally minimize corporate tax burden.",
+        features: ["Corporate Annual Tax Return", "Fiscal reconciliation & correction", "Legal tax planning"]
       },
       {
-        name: "Pelatihan Pajak Brevet AB",
+        name: "Tax Training Brevet A&B",
         icon: "ph-graduation-cap",
-        price: "Rp 1.500.000 / peserta",
-        desc: "Program pelatihan pajak terstruktur untuk individu/staf keuangan: materi Brevet A (pajak pribadi) dan Brevet B (pajak badan) sesuai standar DJP.",
-        features: ["Materi Brevet A (pajak pribadi)", "Materi Brevet B (pajak badan)", "Sesuai standar DJP", "Sertifikat kelulusan"]
+        price: "Rp 1.500.000 / participant",
+        desc: "Structured tax training program for individuals/finance staff: Brevet A (personal tax) and Brevet B (corporate tax) curriculum aligned with the Directorate General of Taxes (DJP) standards.",
+        features: ["Brevet A curriculum (personal tax)", "Brevet B curriculum (corporate tax)", "Aligned with DJP standards", "Completion certificate"]
       }
     ]
   },
   "business-certification": {
     icon: "ph-certificate",
     name: "Business Certification",
-    tagline: "Raih Sertifikasi Internasional, Tingkatkan Kepercayaan Bisnis",
+    tagline: "Achieve International Certification, Elevate Business Credibility",
     short_desc: "Training, consulting, and certification support for ISO 9001 and ISO 27001 to help companies achieve and maintain industry-recognized standards.",
     description: `
-      <p class="mb-4">Sertifikasi internasional bukan hanya sebuah dokumen - ini adalah bukti nyata komitmen perusahaan terhadap kualitas, keamanan, dan profesionalisme. Layanan Business Certification kami hadir untuk mendampingi perusahaan Anda dari awal hingga berhasil meraih sertifikasi yang diinginkan.</p>
-      <p class="mb-4">Tim konsultan bersertifikat kami memiliki pengalaman mendampingi berbagai jenis industri dalam memperoleh dan mempertahankan sertifikasi ISO, SNI, dan standar internasional lainnya.</p>
-      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Sertifikasi yang Kami Tangani</h3>
+      <p class="mb-4">International certification is more than just a document — it is tangible proof of a company's commitment to quality, security, and professionalism. Our Business Certification service guides your company from the very beginning through to successfully obtaining the desired certification.</p>
+      <p class="mb-4">Our certified consulting team has extensive experience supporting various industries in obtaining and maintaining ISO, SNI, and other international standard certifications.</p>
+      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Certifications We Handle</h3>
       <ul class="space-y-3 text-gray-600">
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>ISO 9001:2015 - Sistem Manajemen Mutu</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>ISO 27001:2022 - Sistem Manajemen Keamanan Informasi</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>ISO 14001 - Sistem Manajemen Lingkungan</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>SMK3 - Sistem Manajemen Keselamatan dan Kesehatan Kerja</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>ISO 9001:2015 — Quality Management System</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>ISO 27001:2022 — Information Security Management System</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>ISO 14001 — Environmental Management System</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>SMK3 — Occupational Health & Safety Management System</span></li>
       </ul>
     `,
     packages: [
@@ -289,124 +288,124 @@ const SERVICE_DATA = {
         name: "Basic Awareness Consulting",
         icon: "ph-info",
         price: "Rp 7.500.000",
-        desc: "Sesi pelatihan kesadaran ISO satu hari untuk seluruh level karyawan, disertai gap analysis awal untuk menilai kesiapan organisasi menuju sertifikasi.",
-        features: ["Training awareness ISO 1 hari", "Gap analysis awal", "Penilaian kesiapan organisasi", "Roadmap menuju sertifikasi"]
+        desc: "One-day ISO awareness training for all employee levels, accompanied by an initial gap analysis to assess the organization's readiness toward certification.",
+        features: ["1-day ISO awareness training", "Initial gap analysis", "Organizational readiness assessment", "Certification roadmap"]
       },
       {
         name: "ISO Preparation Consulting",
         icon: "ph-gear",
         price: "Rp 35.000.000",
-        desc: "Paket konsultasi lengkap persiapan sertifikasi ISO: pembangunan sistem manajemen mutu, penyusunan dokumentasi, pelatihan internal auditor, dan pendampingan pre-audit hingga siap disertifikasi.",
-        features: ["Pembangunan sistem manajemen mutu", "Penyusunan kebijakan, prosedur & SOP", "Pelatihan internal auditor", "Pendampingan pre-audit", "Mock audit sebelum sertifikasi"]
+        desc: "Complete ISO certification preparation package: quality management system development, documentation preparation, internal auditor training, and pre-audit support until ready for certification.",
+        features: ["Quality management system development", "Policy, procedure & SOP development", "Internal auditor training", "Pre-audit support", "Mock audit before certification"]
       },
       {
         name: "Initial Certification Consulting",
         icon: "ph-certificate",
-        price: "Fee 10% dari biaya audit eksternal",
-        desc: "Pendampingan intensif sertifikasi ISO tahap pertama: koordinasi dengan badan sertifikasi, persiapan audit stage 1 & 2, pengelolaan temuan (nonconformity), dan support hingga sertifikat diterbitkan.",
-        features: ["Koordinasi dengan badan sertifikasi", "Persiapan audit stage 1 & 2", "Pengelolaan nonconformity", "Support hingga sertifikat terbit"]
+        price: "Fee 10% of external audit cost",
+        desc: "Intensive support for initial ISO certification: coordination with the certification body, stage 1 & 2 audit preparation, nonconformity management, and support until the certificate is issued.",
+        features: ["Coordination with certification body", "Stage 1 & 2 audit preparation", "Nonconformity management", "Support until certificate is issued"]
       },
       {
         name: "Surveillance Audit Consulting",
         icon: "ph-eye",
-        price: "Rp 15.000.000 / tahun",
-        desc: "Pendampingan audit surveillance tahunan untuk mempertahankan sertifikasi ISO: review pembaruan dokumentasi, latihan internal audit, dan respons terhadap temuan auditor eksternal.",
-        features: ["Review pembaruan dokumentasi", "Latihan internal audit", "Respons temuan auditor eksternal", "Maintenance sertifikasi aktif"]
+        price: "Rp 15.000.000 / year",
+        desc: "Annual surveillance audit support to maintain ISO certification: documentation update review, internal audit practice, and response to external auditor findings.",
+        features: ["Documentation update review", "Internal audit practice", "External auditor finding response", "Active certification maintenance"]
       },
       {
         name: "Certification Renewal Consulting",
         icon: "ph-arrows-clockwise",
         price: "Rp 22.000.000",
-        desc: "Pendampingan re-sertifikasi ISO (setiap 3 tahun): audit internal pre-renewal, pembaruan sistem manajemen mutu, pengelolaan temuan, dan koordinasi penuh dengan badan sertifikasi eksternal.",
-        features: ["Audit internal pre-renewal", "Pembaruan sistem manajemen mutu", "Pengelolaan temuan audit", "Koordinasi badan sertifikasi"]
+        desc: "ISO re-certification support (every 3 years): pre-renewal internal audit, quality management system update, finding management, and full coordination with the external certification body.",
+        features: ["Pre-renewal internal audit", "Quality management system update", "Audit finding management", "Certification body coordination"]
       },
       {
-        name: "Template SOP ISO",
+        name: "ISO SOP Templates",
         icon: "ph-files",
-        price: "Rp 2.500.000 / paket",
-        desc: "Paket template dokumen SOP standar ISO siap pakai: template kebijakan mutu, prosedur operasional, formulir rekam mutu, dan panduan implementasi. Produk digital tanpa sesi konsultasi tambahan.",
-        features: ["Template kebijakan mutu", "Template prosedur operasional", "Formulir rekam mutu", "Panduan implementasi", "Format Word & PDF"]
+        price: "Rp 2.500.000 / package",
+        desc: "Ready-to-use ISO SOP document template package: quality policy templates, operational procedures, quality record forms, and implementation guide. Digital product, no additional consultation sessions.",
+        features: ["Quality policy templates", "Operational procedure templates", "Quality record forms", "Implementation guide", "Format Word & PDF"]
       }
     ]
   },
   "human-resources": {
     icon: "ph-users-three",
     name: "Human Resources",
-    tagline: "Membangun Sumber Daya Manusia sebagai Aset Strategis Perusahaan",
+    tagline: "Building Human Resources as a Strategic Asset for Your Organization",
     short_desc: "Human resource services focused on workforce planning, talent development, organizational effectiveness, and people strategy to support sustainable business growth.",
     description: `
-      <p class="mb-4">Dalam era persaingan bisnis yang semakin ketat, sumber daya manusia yang kompeten dan engaged adalah diferensiator utama perusahaan. Layanan HR kami hadir untuk membantu organisasi Anda membangun sistem pengelolaan SDM yang efektif, adil, dan selaras dengan tujuan bisnis.</p>
-      <p class="mb-4">Kami memahami bahwa setiap organisasi memiliki tantangan HR yang unik. Pendekatan kami selalu dimulai dari memahami konteks bisnis Anda sebelum merancang solusi yang tepat sasaran.</p>
-      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Area Layanan HR Kami</h3>
+      <p class="mb-4">In an increasingly competitive business landscape, competent and engaged human resources are a company's primary differentiator. Our HR service helps your organization build an effective, fair, and business-aligned HR management system.</p>
+      <p class="mb-4">We understand that every organization has unique HR challenges. Our approach always begins with understanding your business context before designing precisely targeted solutions.</p>
+      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Our HR Service Areas</h3>
       <ul class="space-y-3 text-gray-600">
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Perencanaan dan pengembangan organisasi</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Rekrutmen dan seleksi berbasis kompetensi</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Sistem penilaian kinerja dan manajemen talent</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Kompensasi, benefit, dan administrasi kepegawaian</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Organizational planning and development</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Competency-based recruitment and selection</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Performance appraisal systems and talent management</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Compensation, benefits, and personnel administration</span></li>
       </ul>
     `,
     packages: [
       {
         name: "Course Pre-made",
         icon: "ph-play-circle",
-        price: "Rp 150.000 / modul",
-        desc: "Akses modul e-learning asinkron siap pakai yang dapat diakses kapan saja oleh karyawan. Topik: soft skills, manajemen, compliance, dan pengembangan profesional.",
-        features: ["E-learning asinkron", "Akses kapan saja & di mana saja", "Topik: soft skills, manajemen, compliance", "Sertifikat penyelesaian modul"]
+        price: "Rp 150.000 / module",
+        desc: "Access to ready-to-use asynchronous e-learning modules available to employees anytime. Topics: soft skills, management, compliance, and professional development.",
+        features: ["Asynchronous e-learning", "Access anytime & anywhere", "Topics: soft skills, management, compliance", "Module completion certificate"]
       },
       {
         name: "Custom Course",
         icon: "ph-pencil-ruler",
-        price: "Rp 15.000.000 / batch (~20 peserta)",
-        desc: "Program pelatihan karyawan yang sepenuhnya dikustomisasi sesuai kebutuhan spesifik perusahaan, dalam format hybrid (online + offline). Mencakup desain kurikulum, pembuatan materi, fasilitasi sesi, dan evaluasi pembelajaran.",
-        features: ["Desain kurikulum custom", "Pembuatan materi pelatihan", "Format hybrid (online + offline)", "Fasilitasi sesi oleh trainer berpengalaman", "Evaluasi & laporan pembelajaran", "Kapasitas ±20 peserta per batch"]
+        price: "Rp 15.000.000 / batch (~20 participants)",
+        desc: "Fully customized employee training program in hybrid format (online + offline). Includes curriculum design, content creation, session facilitation, and learning evaluation.",
+        features: ["Custom curriculum design", "Training content creation", "Hybrid format (online + offline)", "Session facilitation by experienced trainers", "Learning evaluation & reporting", "Capacity ±20 participants per batch"]
       }
     ]
   },
   "it-consulting": {
     icon: "ph-cpu",
     name: "IT Consulting",
-    tagline: "Transformasi Digital Bisnis dengan Solusi Teknologi yang Tepat",
+    tagline: "Digital Business Transformation with the Right Technology Solutions",
     short_desc: "IT consulting focused on software development, infrastructure network, AI services, cyber security, and ERP systems to help your business thrive in the digital era.",
     description: `
-      <p class="mb-4">Di era digital ini, teknologi bukan lagi sekadar pendukung operasional - ia adalah penggerak utama inovasi dan keunggulan kompetitif. Layanan IT Consulting kami hadir untuk membantu bisnis Anda memanfaatkan teknologi secara strategis dan efektif.</p>
-      <p class="mb-4">Dari pengembangan software custom, implementasi ERP, keamanan siber, hingga infrastruktur jaringan - tim kami memiliki kompetensi yang luas dan pengalaman nyata dalam berbagai domain teknologi bisnis.</p>
-      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Keahlian Teknologi Kami</h3>
+      <p class="mb-4">In today's digital era, technology is no longer just an operational support tool — it is the primary driver of innovation and competitive advantage. Our IT Consulting service helps your business leverage technology strategically and effectively.</p>
+      <p class="mb-4">From custom software development, ERP implementation, cybersecurity, to network infrastructure — our team has broad competencies and hands-on experience across various business technology domains.</p>
+      <h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">Our Technology Expertise</h3>
       <ul class="space-y-3 text-gray-600">
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Pengembangan aplikasi web dan mobile custom berbasis kebutuhan bisnis</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Implementasi dan kustomisasi sistem ERP (ERPNext, Frappe)</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Cyber security assessment, penetration testing, dan hardening</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Infrastructure design, cloud migration, dan network management</span></li>
-        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>AI & automation untuk efisiensi operasional bisnis</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Custom web and mobile application development based on business requirements</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>ERP system implementation and customization (ERPNext, Frappe)</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Cybersecurity assessment, penetration testing, and hardening</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>Infrastructure design, cloud migration, and network management</span></li>
+        <li class="flex gap-3"><i class="ph ph-check-circle text-primary text-xl flex-shrink-0 mt-0.5"></i><span>AI & automation for business operational efficiency</span></li>
       </ul>
     `,
     packages: [
       {
-        name: "Platform LMS ECOHUB",
+        name: "ECOHUB LMS Platform",
         icon: "ph-graduation-cap",
-        price: "Rp 350.000 / user / tahun (min. 50 user)",
-        desc: "Akses platform LMS proprietary NSVisitama (ECOHUB) untuk pelatihan karyawan internal: manajemen konten, tracking progress, sertifikasi otomatis, dan dashboard analytics.",
-        features: ["Manajemen konten pelatihan", "Tracking progress karyawan", "Sertifikasi digital otomatis", "Dashboard analytics real-time", "Minimum order 50 user"]
+        price: "Rp 350.000 / user / year (min. 50 users)",
+        desc: "Access to NSVisitama's proprietary LMS platform (ECOHUB) for internal employee training: content management, progress tracking, automated certification, and analytics dashboard.",
+        features: ["Training content management", "Employee progress tracking", "Automated digital certification", "Real-time analytics dashboard", "Minimum order 50 users"]
       },
       {
-        name: "Platform LMS Kelas APJII",
+        name: "APJII Class LMS Platform",
         icon: "ph-wifi-high",
-        price: "Rp 350.000 / user / tahun",
-        desc: "Akses LMS dengan konten spesialis industri ISP/Telekomunikasi, dikurasi bersama APJII. Mencakup pelatihan teknikal dan regulasi telekomunikasi terstandar untuk perusahaan ISP.",
-        features: ["Konten spesifik industri ISP/Telko", "Dikurasi bersama APJII", "Pelatihan teknikal & regulasi", "Sesuai standar industri telekomunikasi"]
+        price: "Rp 350.000 / user / year",
+        desc: "LMS access with ISP/Telecommunications industry-specific content, curated in partnership with APJII. Includes standardized technical and telecommunications regulatory training for ISP companies.",
+        features: ["ISP/Telco industry-specific content", "Curated in partnership with APJII", "Technical & regulatory training", "Aligned with telecommunications industry standards"]
       },
       {
-        name: "Konsultasi ERP Implementation",
+        name: "ERP Implementation Consulting",
         icon: "ph-database",
-        price: "Mulai Rp 45.000.000",
-        desc: "Implementasi sistem ERP (ERPNext) menyeluruh: analisis kebutuhan bisnis, konfigurasi modul (Sales, Purchase, Inventory, Accounting), migrasi data, pelatihan pengguna, dan go-live support.",
-        features: ["Analisis kebutuhan bisnis", "Konfigurasi modul ERPNext", "Migrasi data", "Pelatihan pengguna (user training)", "Go-live support hingga sistem stabil"]
+        price: "Rp 45.000.000",
+        desc: "Comprehensive ERP (ERPNext) implementation: business needs analysis, module configuration (Sales, Purchase, Inventory, Accounting), data migration, user training, and go-live support.",
+        features: ["Business needs analysis", "ERPNext module configuration", "Data migration", "User training", "Go-live support until system is stable"]
       },
       {
         name: "Resource Sharing Platform",
         icon: "ph-share-network",
         price: "Cost + Margin 40%",
-        desc: "Pengembangan platform digital custom berbasis model resource sharing dengan harga transparan. Cocok untuk perusahaan yang membutuhkan infrastruktur teknologi kolaboratif.",
-        features: ["Pengembangan platform custom", "Model resource sharing", "Harga berbasis cost aktual + margin", "Infrastruktur teknologi kolaboratif", "Skalabilitas sesuai kebutuhan"]
+        desc: "Custom digital platform development based on a resource sharing model with transparent pricing. Ideal for companies requiring collaborative technology infrastructure.",
+        features: ["Custom platform development", "Model resource sharing", "Pricing based on actual cost + margin", "Collaborative technology infrastructure", "Scalability as needed"]
       }
     ]
   }
@@ -437,11 +436,11 @@ document.title = service.name + ' - PT Nararya Semesta Visitama';
         <p class="text-white/80 text-lg max-w-2xl" id="hero-tagline"></p>
         <div class="flex flex-wrap gap-3 mt-8 justify-center lg:justify-start">
           <a href="#description" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-primary rounded-full font-semibold text-sm hover:bg-gray-100 transition-all shadow-md">
-            Selengkapnya <i class="ph ph-arrow-down"></i>
+            Learn More <i class="ph ph-arrow-down"></i>
           </a>
           <a href="#Contact-Us" onclick="scrollToContact(event)"
              class="inline-flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/30 text-white rounded-full font-semibold text-sm hover:bg-white/20 transition-all">
-            <i class="ph ph-chat-dots"></i> Konsultasi Sekarang
+            <i class="ph ph-chat-dots"></i> Get a Consultation
           </a>
         </div>
       </div>
@@ -475,25 +474,25 @@ document.title = service.name + ' - PT Nararya Semesta Visitama';
     <div class="grid lg:grid-cols-3 gap-12">
       <!-- Main Description -->
       <div class="lg:col-span-2">
-        <p class="text-primary font-bold tracking-widest uppercase text-xs mb-3">Tentang Layanan Ini</p>
+        <p class="text-primary font-bold tracking-widest uppercase text-xs mb-3">About This Service</p>
         <h2 class="text-3xl font-bold text-gray-900 mb-8" id="desc-heading"></h2>
         <div class="prose prose-lg text-gray-600 leading-relaxed" id="full-description"></div>
       </div>
       <!-- Sidebar -->
       <div>
         <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 sticky top-28">
-          <h3 class="font-bold text-gray-900 mb-4">Tertarik dengan layanan ini?</h3>
-          <p class="text-sm text-gray-500 mb-6">Konsultasikan kebutuhan bisnis Anda dengan tim kami. Gratis, tanpa kewajiban.</p>
+          <h3 class="font-bold text-gray-900 mb-4">Interested in this service?</h3>
+          <p class="text-sm text-gray-500 mb-6">Discuss your business needs with our team. Free, no obligation.</p>
           <a href="#Contact-Us" onclick="scrollToContact(event)"
              class="block w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold py-3 rounded-xl transition-all shadow-sm hover:shadow-md mb-3">
-            Mulai Konsultasi
+            Start Consultation
           </a>
           <a href="tel:+6285121951403"
              class="block w-full text-center border border-gray-200 hover:border-primary text-gray-600 hover:text-primary font-semibold py-3 rounded-xl transition-all">
             <i class="ph ph-phone mr-2"></i>+62 851-2195-1403
           </a>
           <div class="mt-6 pt-6 border-t border-gray-200">
-            <p class="text-xs text-gray-400 mb-3 font-semibold uppercase tracking-wider">Layanan Lainnya</p>
+            <p class="text-xs text-gray-400 mb-3 font-semibold uppercase tracking-wider">Other Services</p>
             <div class="space-y-2" id="other-services"></div>
           </div>
         </div>
@@ -506,16 +505,16 @@ document.title = service.name + ' - PT Nararya Semesta Visitama';
 <section id="packages" class="py-20 bg-gray-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-14">
-      <p class="text-primary font-bold tracking-widest uppercase text-xs mb-3">Paket Layanan</p>
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">Pilih Paket yang Sesuai</h2>
-      <p class="text-secondary">Setiap paket dapat disesuaikan dengan kebutuhan dan skala bisnis Anda. Hubungi kami untuk diskusi lebih lanjut.</p>
+      <p class="text-primary font-bold tracking-widest uppercase text-xs mb-3">Service Packages</p>
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Choose the Right Package</h2>
+      <p class="text-secondary">Each package can be tailored to your specific business needs and scale. Contact us for further discussion.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="packages-grid"></div>
   </div>
 </section>
 
 <!-- ── Full Inquiry Form ─────────────────────────────────────────────── -->
-<section class="py-20 bg-white border-t border-gray-100">
+<!-- <section class="py-20 bg-white border-t border-gray-100">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
       <p class="text-primary font-bold tracking-widest uppercase text-xs mb-3">Get In Touch</p>
@@ -528,16 +527,16 @@ document.title = service.name + ' - PT Nararya Semesta Visitama';
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- ── CTA Section ────────────────────────────────────────────────────────── -->
 <section class="py-16 bg-white border-t border-gray-100">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-3xl font-bold text-gray-900 mb-4">Siap Memulai?</h2>
-    <p class="text-secondary text-lg mb-8">Tim kami siap membantu Anda merancang solusi yang tepat. Tidak ada biaya untuk konsultasi awal.</p>
+    <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Get Started?</h2>
+    <p class="text-secondary text-lg mb-8">Our team is ready to help you design the right solution. No cost for the initial consultation.</p>
     <a href="#Contact-Us" onclick="scrollToContact(event)"
        class="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-full transition-all shadow-md hover:shadow-lg text-base">
-      <i class="ph ph-chat-dots text-xl"></i> Hubungi Kami Sekarang
+      <i class="ph ph-chat-dots text-xl"></i> Contact Us Now
     </a>
   </div>
 </section>
@@ -562,7 +561,7 @@ service.packages.forEach(pkg => {
         <i class="ph ${pkg.icon} text-2xl"></i>
       </div>
       <h3 class="text-lg font-bold text-gray-900 mb-2">${pkg.name}</h3>
-      ${pkg.price ? `<p class="text-primary font-bold text-sm mb-3">${pkg.price}</p>` : ''}
+      ${pkg.price ? `<p class="text-primary font-bold text-sm mb-3">${/Custom|Success Fee|Cost \+|Fee \d|%|\//.test(pkg.price) ? pkg.price : 'Start from ' + pkg.price}</p>` : ''}
       <p class="text-secondary text-sm mb-5 flex-grow">${pkg.desc}</p>
       <ul class="space-y-2 mb-6">
         ${pkg.features.map(f => `
