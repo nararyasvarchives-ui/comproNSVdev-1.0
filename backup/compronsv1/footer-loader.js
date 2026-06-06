@@ -4,7 +4,8 @@
  * ║  PT Nararya Semesta Visitama                         ║
  * ║                                                      ║
  * ║  CARA PAKAI:                                         ║
- * ║  Tambahkan 1 baris sebelum </body>:                  ║
+ * ║  Tambahkan 1 baris sebelum <script src="footer-contact.js"></script>
+</body>:                  ║
  * ║  <script src="footer-loader.js"></script>            ║
  * ║                                                      ║
  * ║  Catatan: kalau pakai navbar-loader.js juga,         ║

@@ -4,7 +4,8 @@
  * ║  PT Nararya Semesta Visitama                         ║
  * ║                                                      ║
  * ║  CARA PAKAI:                                         ║
- * ║  Tambahkan 1 baris ini sebelum </body> di setiap     ║
+ * ║  Tambahkan 1 baris ini sebelum <script src="footer-contact.js"></script>
+</body> di setiap     ║
  * ║  halaman HTML yang ingin pakai navbar NSV:           ║
  * ║                                                      ║
  * ║  <script src="navbar-loader.js"></script>            ║
