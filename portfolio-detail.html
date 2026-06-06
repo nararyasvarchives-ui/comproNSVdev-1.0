@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Detail - PT Nararya Semesta Visitama</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#A11E21', 'primary-dark': '#831618', secondary: '#7F7F7F' },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          boxShadow: { soft: '0 4px 20px -2px rgba(0,0,0,0.05)' }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    .prose-content p { margin-bottom: 1rem; line-height: 1.8; color: #4b5563; }
+    .prose-content h2, .prose-content h3 { font-weight: 700; color: #111827; margin: 1.5rem 0 .75rem; }
+    .prose-content ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #4b5563; }
+    .prose-content li { margin-bottom: .4rem; }
+    .skeleton { background: linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%); background-size:200% 100%; animation:shimmer 1.5s infinite; }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+<script src="navbar-loader.js"></script>
+
+<!-- Breadcrumb -->
+<div class="bg-gray-50 border-b border-gray-100 mt-16">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <nav class="flex items-center gap-2 text-sm text-gray-500">
+      <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+      <i class="ph ph-caret-right text-xs"></i>
+      <a href="portfolio.html" class="hover:text-primary transition-colors">Portfolio</a>
+      <i class="ph ph-caret-right text-xs"></i>
+      <span id="breadcrumb-title" class="text-gray-900 font-medium">Loading...</span>
+    </nav>
+  </div>
+</div>
+
+<!-- Content -->
+<main class="py-16">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Loading -->
+    <div id="loading-state">
+      <div class="skeleton h-8 w-3/4 mb-4 rounded"></div>
+      <div class="skeleton h-4 w-1/3 mb-8 rounded"></div>
+      <div class="skeleton h-72 w-full mb-8 rounded-2xl"></div>
+      <div class="skeleton h-4 w-full mb-3 rounded"></div>
+      <div class="skeleton h-4 w-5/6 mb-3 rounded"></div>
+      <div class="skeleton h-4 w-4/5 rounded"></div>
+    </div>
+
+    <!-- Error -->
+    <div id="error-state" class="hidden text-center py-20">
+      <i class="ph ph-warning text-5xl text-red-300 mb-4"></i>
+      <p class="text-gray-400">Portfolio item not found.</p>
+      <a href="portfolio.html" class="inline-flex items-center gap-2 mt-4 text-primary font-semibold hover:underline"><i class="ph ph-arrow-left"></i> Back to Portfolio</a>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="hidden">
+      <div class="grid lg:grid-cols-3 gap-12">
+
+        <!-- Article -->
+        <div class="lg:col-span-2">
+          <!-- Tags & Date -->
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span id="detail-tag" class="hidden text-xs font-semibold text-primary bg-red-50 px-3 py-1 rounded-full"></span>
+            <span id="detail-date" class="text-xs text-gray-400"></span>
+          </div>
+          <h1 id="detail-title" class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight"></h1>
+
+          <!-- Cover Image -->
+          <div id="detail-image-wrap" class="hidden mb-8 rounded-2xl overflow-hidden">
+            <img id="detail-image" src="" alt="" class="w-full object-cover max-h-96">
+          </div>
+
+          <!-- Body -->
+          <div id="detail-body" class="prose-content text-gray-600 leading-relaxed"></div>
+
+          <!-- Back -->
+          <div class="mt-12 pt-8 border-t border-gray-100">
+            <a href="portfolio.html" class="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+              <i class="ph ph-arrow-left"></i> Back to Portfolio
+            </a>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div>
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 sticky top-28 space-y-5">
+            <h3 class="font-bold text-gray-900">Project Details</h3>
+            <div id="sidebar-client" class="hidden">
+              <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Client</p>
+              <p id="sidebar-client-name" class="font-semibold text-gray-800 text-sm"></p>
+            </div>
+            <div id="sidebar-date-wrap" class="hidden">
+              <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Published</p>
+              <p id="sidebar-date" class="font-semibold text-gray-800 text-sm"></p>
+            </div>
+            <div id="sidebar-tag-wrap" class="hidden">
+              <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Category</p>
+              <p id="sidebar-tag" class="font-semibold text-gray-800 text-sm"></p>
+            </div>
+            <hr class="border-gray-200">
+            <div>
+              <p class="text-sm text-gray-500 mb-4">Interested in similar work for your business?</p>
+              <a href="#Contact-Us" onclick="document.getElementById('Contact-Us')?.scrollIntoView({behavior:'smooth'});return false;"
+                 class="block w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold py-3 rounded-xl transition-all text-sm">
+                Get in Touch
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="inquiry.js"></script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+const FRAPPE = window.location.origin;
+const API = FRAPPE + '/api/method/nsv_compro.api.endpoints.get_portfolio_detail';
+
+function formatDate(d) {
+  if (!d) return '';
+  return new Date(d).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+}
+
+async function load() {
+  if (!id) { showError(); return; }
+  try {
+    const res = await fetch(`${API}?name=${encodeURIComponent(id)}`);
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    const item = data.message;
+    if (!item) throw new Error();
+
+    document.title = item.title + ' — Portfolio — NSV';
+    document.getElementById('breadcrumb-title').textContent = item.title;
+    document.getElementById('detail-title').textContent = item.title;
+
+    if (item.tags) {
+      const t = document.getElementById('detail-tag');
+      t.textContent = item.tags;
+      t.classList.remove('hidden');
+      document.getElementById('sidebar-tag').textContent = item.tags;
+      document.getElementById('sidebar-tag-wrap').classList.remove('hidden');
+    }
+    if (item.published_at) {
+      document.getElementById('detail-date').textContent = formatDate(item.published_at);
+      document.getElementById('sidebar-date').textContent = formatDate(item.published_at);
+      document.getElementById('sidebar-date-wrap').classList.remove('hidden');
+    }
+    if (item.client_name) {
+      document.getElementById('sidebar-client-name').textContent = item.client_name;
+      document.getElementById('sidebar-client').classList.remove('hidden');
+    }
+    if (item.image) {
+      document.getElementById('detail-image').src = FRAPPE + item.image;
+      document.getElementById('detail-image').alt = item.title;
+      document.getElementById('detail-image-wrap').classList.remove('hidden');
+    }
+
+    const body = item.description || item.content || item.excerpt || '';
+    document.getElementById('detail-body').innerHTML = body;
+
+    document.getElementById('loading-state').classList.add('hidden');
+    document.getElementById('main-content').classList.remove('hidden');
+  } catch {
+    showError();
+  }
+}
+
+function showError() {
+  document.getElementById('loading-state').classList.add('hidden');
+  document.getElementById('error-state').classList.remove('hidden');
+}
+
+load();
+</script>
+
+<script src="footer-loader.js"></script>
+</body>
+</html>
