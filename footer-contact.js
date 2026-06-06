@@ -1,5 +1,5 @@
 /**
- * NSV Footer Contact Form — footer-contact.js
+ * NSV Footer Contact Form - footer-contact.js
  * Handles Send Message form submission to Frappe API.
  * Uses event delegation so it works regardless of when footer is injected.
  */
@@ -29,7 +29,7 @@
 
     if (!val || val.startsWith('others')) {
       pkgWrap.style.display = 'none';
-      pkgSel.innerHTML = '<option value="">— Select package —</option>';
+      pkgSel.innerHTML = '<option value="">- Select package -</option>';
       return;
     }
 
@@ -37,7 +37,7 @@
     pkgWrap.style.display = 'block';
     const pkgs = STATIC_PACKAGES[name] || [];
     pkgSel.innerHTML =
-      '<option value="">— Select package (optional) —</option>' +
+      '<option value="">- Select package (optional) -</option>' +
       pkgs.map(p => `<option value="${p}">${p}</option>`).join('');
   });
 
