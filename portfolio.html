@@ -92,7 +92,7 @@ async function loadPortfolio() {
       return;
     }
     items.forEach(item => {
-      const img = item.image
+      const img = item.cover_image
         ? `<img src="${FRAPPE_URL}${item.image}" alt="${item.title}" class="w-full h-52 object-cover">`
         : `<div class="w-full h-52 bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center"><i class="ph ph-briefcase text-5xl text-primary/30"></i></div>`;
       grid.innerHTML += `
