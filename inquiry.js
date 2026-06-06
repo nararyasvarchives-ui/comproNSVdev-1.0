@@ -1,6 +1,6 @@
 /**
  * ╔══════════════════════════════════════════════════════╗
- * ║  NSV INQUIRY — inquiry.js                            ║
+ * ║  NSV INQUIRY - inquiry.js                            ║
  * ║  PT Nararya Semesta Visitama                         ║
  * ╚══════════════════════════════════════════════════════╝
  */
@@ -129,8 +129,8 @@
             <h3 id="nsv-inq-title" style="font-size:1.2rem;font-weight:700;color:#111827;margin:0 0 4px;">Request Information</h3>
             <p style="font-size:.85rem;color:#6b7280;margin:0 0 20px;">Fill in your details and we'll reach out shortly.</p>
             <div class="nsv-inq-context" id="nsv-inq-context-box" style="display:none;">
-              <div>Service / Product: <span id="nsv-inq-ctx-service">—</span></div>
-              <div style="margin-top:4px">Package: <span id="nsv-inq-ctx-package">—</span></div>
+              <div>Service / Product: <span id="nsv-inq-ctx-service">-</span></div>
+              <div style="margin-top:4px">Package: <span id="nsv-inq-ctx-package">-</span></div>
             </div>
             <form id="nsv-inq-popup-form" novalidate autocomplete="off">
               <div class="nsv-inq-field">
@@ -197,8 +197,8 @@
     if (btn) { btn.disabled = false; btn.textContent = 'Send Inquiry'; }
 
     const svcLabel = ctx.service || ctx.product || '';
-    document.getElementById('nsv-inq-ctx-service').textContent = svcLabel || '—';
-    document.getElementById('nsv-inq-ctx-package').textContent = ctx.package || '—';
+    document.getElementById('nsv-inq-ctx-service').textContent = svcLabel || '-';
+    document.getElementById('nsv-inq-ctx-package').textContent = ctx.package || '-';
     document.getElementById('inq-ref-type').value = ctx.service ? 'NSV Service' : (ctx.product ? 'NSV Product' : '');
     document.getElementById('inq-ref-name').value = svcLabel;
     document.getElementById('inq-pkg-name').value  = ctx.package || '';
@@ -340,7 +340,7 @@
           <div class="nsv-inq-field">
             <label class="nsv-inq-label" for="fi-reqtype">Request Type</label>
             <select id="fi-reqtype" class="nsv-inq-select">
-              <option value="">— Select request type —</option>
+              <option value="">- Select request type -</option>
               <option value="Product Enquiry">Product Enquiry</option>
               <option value="Request for Information">Request for Information</option>
               <option value="Suggestions">Suggestions</option>
@@ -350,7 +350,7 @@
           <div class="nsv-inq-field">
             <label class="nsv-inq-label" for="fi-ref">Service / Product</label>
             <select id="fi-ref" class="nsv-inq-select">
-              <option value="">— Select service or product —</option>
+              <option value="">- Select service or product -</option>
               <optgroup label="Services">
                 ${services.map(s => `<option value="${s.name}" data-type="service">${s.service_name}</option>`).join('')}
               </optgroup>
@@ -362,7 +362,7 @@
           <div class="nsv-inq-field">
             <label class="nsv-inq-label" for="fi-pkg">Package</label>
             <select id="fi-pkg" class="nsv-inq-select">
-              <option value="">— Select service/product first —</option>
+              <option value="">- Select service/product first -</option>
             </select>
           </div>
           <div class="nsv-inq-field span-2">
@@ -380,16 +380,16 @@
     document.getElementById('fi-ref')?.addEventListener('change', async function () {
       const val = this.value;
       const pkgSel = document.getElementById('fi-pkg');
-      if (!val) { pkgSel.innerHTML = '<option value="">— Select service/product first —</option>'; return; }
+      if (!val) { pkgSel.innerHTML = '<option value="">- Select service/product first -</option>'; return; }
       pkgSel.innerHTML = '<option value="">Loading...</option>';
       try {
         const res = await fetch(`${PACKAGES_API}?ref_name=${encodeURIComponent(val)}`);
         const data = await res.json();
         const pkgs = data.message || [];
         pkgSel.innerHTML = pkgs.length
-          ? '<option value="">— Select package —</option>' + pkgs.map(p => `<option value="${p.package_name}">${p.package_name}</option>`).join('')
-          : '<option value="">— No packages available —</option>';
-      } catch { pkgSel.innerHTML = '<option value="">— Could not load —</option>'; }
+          ? '<option value="">- Select package -</option>' + pkgs.map(p => `<option value="${p.package_name}">${p.package_name}</option>`).join('')
+          : '<option value="">- No packages available -</option>';
+      } catch { pkgSel.innerHTML = '<option value="">- Could not load -</option>'; }
     });
 
     // Full form submit
@@ -448,7 +448,7 @@
 
         showToast('✓ Inquiry submitted successfully!', 'success');
         this.reset();
-        document.getElementById('fi-pkg').innerHTML = '<option value="">— Select service/product first —</option>';
+        document.getElementById('fi-pkg').innerHTML = '<option value="">- Select service/product first -</option>';
       } catch (err) {
         showToast('Failed to submit. Please try again.', 'error');
       } finally {
