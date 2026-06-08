@@ -423,6 +423,45 @@ section {
   will-change: transform, opacity;
 }
 
+/* Anniversary banner */
+.top-anniversary-banner {
+  opacity: 0.25;
+  animation: anniversaryBannerFadeIn 1s ease-out forwards;
+  transition: opacity 0.15s linear;
+  will-change: opacity;
+}
+
+/* Hero dibuat halus saat pertama muncul */
+.hero-fade-section {
+  opacity: 0.45;
+  transition: opacity 0.15s linear;
+  will-change: opacity;
+}
+
+/* gradasi halus antara banner dan hero */
+.banner-hero-blend {
+  height: 80px;
+  margin-top: -80px;
+  position: relative;
+  z-index: 35;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(255, 255, 255, 0.65)
+  );
+}
+
+@keyframes anniversaryBannerFadeIn {
+  from {
+    opacity: 0.25;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 </style>
 
 </head>
@@ -476,8 +515,23 @@ section {
         </div>
     </nav> -->
 
+       <!-- Anniversary Banner -->
+        <section id="anniversary-banner" class="top-anniversary-banner relative z-30 mt-0 bg-black overflow-hidden">
+          <img
+            src="assets/image/annivbanner2026.png"
+            alt="NSVISITAMA 4 Years of Impact"
+            class="w-full h-auto block"
+          >
+
+          <!-- White overlay when scrolling -->
+          <div id="banner-white-fade" class="absolute inset-0 bg-white opacity-0 pointer-events-none"></div>
+        </section>
+
+        <!-- Soft blend between banner and hero -->
+        <div class="banner-hero-blend"></div>
+
     <!-- Hero Section -->
-    <section id="Home" class="relative pt-32 pb-20 md:pt-40 md:pb-28 lg:min-h-[90vh] flex items-center overflow-hidden">
+    <section id="Home" class="hero-fade-section relative pt-32 pb-20 md:pt-40 md:pb-28 lg:min-h-[90vh] flex items-center overflow-hidden">
 
   <!-- Background Video -->
   <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
@@ -1415,5 +1469,29 @@ partnerLogos.forEach(logo => partnerObserver.observe(logo));
 </script>
     <script src="footer-loader.js"></script>
 <script src="footer-contact.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const bannerWhiteFade = document.getElementById("banner-white-fade");
+    const hero = document.getElementById("Home");
+
+    if (!bannerWhiteFade || !hero) return;
+
+    function handleBannerHeroFade() {
+      const scrollY = window.scrollY;
+      const maxScroll = 420;
+
+      const progress = Math.min(scrollY / maxScroll, 1);
+
+      const bannerWhiteOpacity = progress * 0.50;
+      const heroOpacity = 0.45 + (progress * 0.55);
+
+      bannerWhiteFade.style.opacity = bannerWhiteOpacity;
+      hero.style.opacity = heroOpacity;
+    }
+
+    handleBannerHeroFade();
+    window.addEventListener("scroll", handleBannerHeroFade);
+  });
+</script>
 </body>
 </html>
