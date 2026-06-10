@@ -515,133 +515,26 @@ section {
         </div>
     </nav> -->
 
-       <!-- Carousel Banner (anniv + news is_banner) -->
+       <!-- Anniversary Banner -->
         <section id="anniversary-banner" class="top-anniversary-banner relative z-30 mt-0 bg-black overflow-hidden">
-          <div id="nsv-carousel" class="relative w-full overflow-hidden">
-            <!-- Track — height controlled by anniv slide -->
-            <div id="carousel-track" class="relative">
-              <!-- Slide 0: Anniv Banner (always present, controls height) -->
-              <div class="carousel-slide" data-idx="0">
-                <picture>
-                  <source media="(max-width:767px)" srcset="assets/image/annivbanner2026-mobile.png">
-                  <img src="assets/image/annivbanner2026.png" alt="NSVISITAMA 4 Years of Impact" class="w-full h-auto block" id="carousel-anniv-img">
-                </picture>
-              </div>
-              <!-- Dynamic news slides injected here by JS -->
-            </div>
-            <!-- Navigation dots -->
-            <div id="carousel-dots" class="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-20 pointer-events-none"></div>
-            <!-- Prev/Next arrows (shown only when >1 slide) -->
-            <button id="carousel-prev" class="hidden absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-black/30 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-all" onclick="NSVCarousel.prev()"><i class="ph ph-caret-left text-xl"></i></button>
-            <button id="carousel-next" class="hidden absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-black/30 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-all" onclick="NSVCarousel.next()"><i class="ph ph-caret-right text-xl"></i></button>
-          </div>
+          <picture>
+            <!-- Mobile banner 1:1 -->
+            <source
+              media="(max-width: 767px)"
+              srcset="assets/image/annivbanner2026-mobile.png"
+            >
+
+            <!-- Desktop banner wide -->
+            <img
+              src="assets/image/annivbanner2026.png"
+              alt="NSVISITAMA 4 Years of Impact"
+              class="w-full h-auto block"
+            >
+          </picture>
+
           <!-- White overlay when scrolling -->
-          <div id="banner-white-fade" class="absolute inset-0 bg-white opacity-0 pointer-events-none z-10"></div>
+          <div id="banner-white-fade" class="absolute inset-0 bg-white opacity-0 pointer-events-none"></div>
         </section>
-
-        <script>
-        window.NSVCarousel = (function(){
-          const FRAPPE = window.location.origin;
-          let total = 1, current = 0, timer = null;
-
-          function isVid(u){ return u && u.toLowerCase().endsWith('.mp4'); }
-
-          function buildNewsSlide(n, idx){
-            const track = document.getElementById('carousel-track');
-            const annivImg = document.getElementById('carousel-anniv-img');
-            const h = annivImg ? annivImg.offsetHeight || 400 : 400;
-
-            const wrap = document.createElement('div');
-            wrap.className = 'carousel-slide absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-700';
-            wrap.setAttribute('data-idx', idx);
-            wrap.style.height = h + 'px';
-
-            const bg = isVid(n.cover_image)
-              ? `<video src="${FRAPPE}${n.cover_image}" autoplay loop muted playsinline class="w-full h-full object-cover"></video>`
-              : n.cover_image
-                ? `<img src="${FRAPPE}${n.cover_image}" alt="${n.title}" class="w-full h-full object-cover">`
-                : `<div class="w-full h-full bg-[#7d0f14]"></div>`;
-
-            wrap.innerHTML = `${bg}
-              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-6 md:p-12 z-10">
-                <p class="text-white/70 text-xs font-bold uppercase tracking-widest mb-2">Berita Terbaru</p>
-                <h2 class="text-white font-bold text-xl md:text-3xl mb-4 max-w-2xl leading-snug">${n.title}</h2>
-                <a href="news-detail.html?id=${n.name}" class="inline-flex items-center gap-2 bg-white text-[#A11E21] font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-gray-100 transition-all pointer-events-auto">
-                  Baca Selengkapnya <i class="ph ph-arrow-right"></i>
-                </a>
-              </div>`;
-            track.appendChild(wrap);
-          }
-
-          function buildDots(){
-            const dotsEl = document.getElementById('carousel-dots');
-            dotsEl.innerHTML = '';
-            for(let i=0;i<total;i++){
-              const d = document.createElement('button');
-              d.className = 'w-2.5 h-2.5 rounded-full transition-all pointer-events-auto ' + (i===0 ? 'bg-white scale-125' : 'bg-white/40');
-              d.onclick = () => goTo(i);
-              dotsEl.appendChild(d);
-            }
-          }
-
-          function goTo(idx){
-            const slides = document.querySelectorAll('.carousel-slide');
-            const dots   = document.querySelectorAll('#carousel-dots button');
-            // Hide current
-            slides[current].classList.remove('opacity-100');
-            slides[current].classList.add('opacity-0','pointer-events-none');
-            if(current===0) slides[0].style.visibility='hidden';
-            if(dots[current]){
-              dots[current].classList.remove('bg-white','scale-125');
-              dots[current].classList.add('bg-white/40');
-            }
-            current = ((idx % total) + total) % total;
-            // Show new
-            slides[current].classList.remove('opacity-0','pointer-events-none');
-            slides[current].classList.add('opacity-100');
-            if(current===0) slides[0].style.visibility='visible';
-            if(dots[current]){
-              dots[current].classList.remove('bg-white/40');
-              dots[current].classList.add('bg-white','scale-125');
-            }
-          }
-
-          async function init(){
-            try {
-              const res  = await fetch(`${FRAPPE}/api/method/nsv_compro.api.endpoints.get_banner_news`);
-              const data = await res.json();
-              const news = data.message || [];
-              news.forEach((n,i) => buildNewsSlide(n, i+1));
-              total = 1 + news.length;
-            } catch(_) {}
-
-            if(total > 1){
-              buildDots();
-              document.getElementById('carousel-prev').classList.remove('hidden');
-              document.getElementById('carousel-next').classList.remove('hidden');
-              // Anniv slide: set fixed height to match
-              const annivImg = document.getElementById('carousel-anniv-img');
-              const setH = () => {
-                const h = annivImg.offsetHeight || 400;
-                document.querySelectorAll('.carousel-slide').forEach(s => {
-                  if(s.getAttribute('data-idx') !== '0') s.style.height = h+'px';
-                });
-              };
-              annivImg.onload ? annivImg.onload = setH : setH();
-              setTimeout(setH, 300);
-              window.addEventListener('resize', setH);
-              timer = setInterval(() => goTo(current+1), 5000);
-            }
-          }
-
-          init();
-          return {
-            prev: () => { clearInterval(timer); goTo(current-1); timer = setInterval(() => goTo(current+1), 5000); },
-            next: () => { clearInterval(timer); goTo(current+1); timer = setInterval(() => goTo(current+1), 5000); }
-          };
-        })();
-        </script>
 
         <!-- Soft blend between banner and hero -->
         <div class="banner-hero-blend"></div>
@@ -1266,114 +1159,6 @@ text-white group-hover:scale-110 transition-all duration-300">
             </div>
         </div>
     </section>
-
-    <!-- ── Portfolio Preview ──────────────────────────────────────────────── -->
-    <section id="portfolio-preview" class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-end justify-between mb-12">
-          <div>
-            <p class="text-[#A11E21] font-bold tracking-widest uppercase text-xs mb-3">Our Work</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Portfolio</h2>
-          </div>
-          <a href="portfolio.html" class="hidden md:inline-flex items-center gap-2 text-[#A11E21] font-semibold text-sm hover:underline">
-            View All <i class="ph ph-arrow-right"></i>
-          </a>
-        </div>
-        <div id="hp-portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="rounded-2xl overflow-hidden border border-gray-100"><div class="h-48 bg-gray-100 animate-pulse"></div><div class="p-5"><div class="h-4 bg-gray-100 rounded animate-pulse mb-2"></div><div class="h-3 bg-gray-100 rounded animate-pulse w-2/3"></div></div></div>
-          <div class="rounded-2xl overflow-hidden border border-gray-100"><div class="h-48 bg-gray-100 animate-pulse"></div><div class="p-5"><div class="h-4 bg-gray-100 rounded animate-pulse mb-2"></div><div class="h-3 bg-gray-100 rounded animate-pulse w-2/3"></div></div></div>
-          <div class="hidden lg:block rounded-2xl overflow-hidden border border-gray-100"><div class="h-48 bg-gray-100 animate-pulse"></div><div class="p-5"><div class="h-4 bg-gray-100 rounded animate-pulse mb-2"></div><div class="h-3 bg-gray-100 rounded animate-pulse w-2/3"></div></div></div>
-        </div>
-        <div class="mt-8 text-center md:hidden">
-          <a href="portfolio.html" class="inline-flex items-center gap-2 text-[#A11E21] font-semibold text-sm hover:underline">View All Portfolio <i class="ph ph-arrow-right"></i></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── News Preview ────────────────────────────────────────────────────── -->
-    <section id="news-preview" class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-end justify-between mb-12">
-          <div>
-            <p class="text-[#A11E21] font-bold tracking-widest uppercase text-xs mb-3">Stay Informed</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">News & Insights</h2>
-          </div>
-          <a href="news.html" class="hidden md:inline-flex items-center gap-2 text-[#A11E21] font-semibold text-sm hover:underline">
-            View All <i class="ph ph-arrow-right"></i>
-          </a>
-        </div>
-        <div id="hp-news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="rounded-2xl overflow-hidden border border-gray-100"><div class="h-48 bg-gray-100 animate-pulse"></div><div class="p-5"><div class="h-4 bg-gray-100 rounded animate-pulse mb-2"></div><div class="h-3 bg-gray-100 rounded animate-pulse w-full mb-1"></div><div class="h-3 bg-gray-100 rounded animate-pulse w-4/5"></div></div></div>
-          <div class="rounded-2xl overflow-hidden border border-gray-100"><div class="h-48 bg-gray-100 animate-pulse"></div><div class="p-5"><div class="h-4 bg-gray-100 rounded animate-pulse mb-2"></div><div class="h-3 bg-gray-100 rounded animate-pulse w-full mb-1"></div><div class="h-3 bg-gray-100 rounded animate-pulse w-4/5"></div></div></div>
-          <div class="hidden lg:block rounded-2xl overflow-hidden border border-gray-100"><div class="h-48 bg-gray-100 animate-pulse"></div><div class="p-5"><div class="h-4 bg-gray-100 rounded animate-pulse mb-2"></div><div class="h-3 bg-gray-100 rounded animate-pulse w-full mb-1"></div><div class="h-3 bg-gray-100 rounded animate-pulse w-4/5"></div></div></div>
-        </div>
-        <div class="mt-8 text-center md:hidden">
-          <a href="news.html" class="inline-flex items-center gap-2 text-[#A11E21] font-semibold text-sm hover:underline">View All News <i class="ph ph-arrow-right"></i></a>
-        </div>
-      </div>
-    </section>
-
-    <script>
-    (function(){
-      const FRAPPE = window.location.origin;
-      function isVid(u){ return u && u.toLowerCase().endsWith('.mp4'); }
-
-      function mediaEl(url, alt, cls){
-        if(isVid(url)) return `<video src="${FRAPPE}${url}" autoplay loop muted playsinline class="${cls}"></video>`;
-        if(url) return `<img src="${FRAPPE}${url}" alt="${alt}" class="${cls}">`;
-        return `<div class="${cls} bg-gray-100 flex items-center justify-center"><i class="ph ph-image text-4xl text-gray-300"></i></div>`;
-      }
-
-      function fmtDate(d){ if(!d)return''; return new Date(d).toLocaleDateString('id-ID',{year:'numeric',month:'long',day:'numeric'}); }
-
-      async function loadPortfolioPreview(){
-        try{
-          const res  = await fetch(`${FRAPPE}/api/method/nsv_compro.api.endpoints.get_portfolio`);
-          const data = await res.json();
-          const items = (data.message||[]).slice(0,3);
-          const grid = document.getElementById('hp-portfolio-grid');
-          if(!items.length){ grid.innerHTML='<p class="text-gray-400 col-span-3 text-center py-10">Belum ada portfolio.</p>'; return; }
-          grid.innerHTML = items.map(item=>`
-            <a href="portfolio-detail.html?id=${item.name}" class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col">
-              <div class="overflow-hidden h-48">${mediaEl(item.cover_image, item.title, 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500')}</div>
-              <div class="p-5 flex flex-col flex-grow">
-                <h3 class="font-bold text-gray-900 mb-1 group-hover:text-[#A11E21] transition-colors line-clamp-2">${item.title}</h3>
-                ${item.client_name?`<p class="text-sm text-gray-500">${item.client_name}</p>`:''}
-                <div class="mt-auto pt-3 flex items-center justify-between">
-                  <span class="text-xs text-gray-400">${fmtDate(item.published_at)}</span>
-                  <span class="text-xs font-semibold text-[#A11E21] flex items-center gap-1">Lihat <i class="ph ph-arrow-right"></i></span>
-                </div>
-              </div>
-            </a>`).join('');
-        }catch(e){ document.getElementById('hp-portfolio-grid').innerHTML=''; }
-      }
-
-      async function loadNewsPreview(){
-        try{
-          const res  = await fetch(`${FRAPPE}/api/method/nsv_compro.api.endpoints.get_news`);
-          const data = await res.json();
-          const items = (data.message||[]).slice(0,3);
-          const grid = document.getElementById('hp-news-grid');
-          if(!items.length){ grid.innerHTML='<p class="text-gray-400 col-span-3 text-center py-10">Belum ada berita.</p>'; return; }
-          grid.innerHTML = items.map(item=>`
-            <a href="news-detail.html?id=${item.name}" class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col">
-              <div class="overflow-hidden h-48">${mediaEl(item.cover_image, item.title, 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500')}</div>
-              <div class="p-5 flex flex-col flex-grow">
-                <h3 class="font-bold text-gray-900 mb-2 group-hover:text-[#A11E21] transition-colors line-clamp-2">${item.title}</h3>
-                ${item.excerpt?`<p class="text-sm text-gray-500 leading-relaxed flex-grow line-clamp-3">${item.excerpt}</p>`:''}
-                <div class="mt-auto pt-3 flex items-center justify-between">
-                  <span class="text-xs text-gray-400">${fmtDate(item.published_at)}</span>
-                  <span class="text-xs font-semibold text-[#A11E21] flex items-center gap-1">Baca <i class="ph ph-arrow-right"></i></span>
-                </div>
-              </div>
-            </a>`).join('');
-        }catch(e){ document.getElementById('hp-news-grid').innerHTML=''; }
-      }
-
-      loadPortfolioPreview();
-      loadNewsPreview();
-    })();
-    </script>
 
 
 <!-- CTA Section (Split + Grey Background Section) -->

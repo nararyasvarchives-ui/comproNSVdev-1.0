@@ -79,33 +79,13 @@
           </div>
           <h1 id="detail-title" class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight"></h1>
 
-          <!-- Cover Media (image or MP4) -->
+          <!-- Cover Image -->
           <div id="detail-image-wrap" class="hidden mb-8 rounded-2xl overflow-hidden">
-            <div id="detail-media-container"></div>
+            <img id="detail-image" src="" alt="" class="w-full object-cover max-h-96">
           </div>
 
           <!-- Body -->
           <div id="detail-body" class="prose-content text-gray-600 leading-relaxed"></div>
-
-          <!-- YouTube Video -->
-          <div id="video-section" class="hidden mt-10">
-            <h3 class="font-bold text-gray-900 text-xl mb-4 flex items-center gap-2"><i class="ph ph-youtube-logo text-[#A11E21]"></i> Video</h3>
-            <div class="aspect-video rounded-2xl overflow-hidden bg-gray-100">
-              <iframe id="youtube-embed" src="" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-          </div>
-
-          <!-- Gallery -->
-          <div id="gallery-section" class="hidden mt-10">
-            <h3 class="font-bold text-gray-900 text-xl mb-5 flex items-center gap-2"><i class="ph ph-images text-[#A11E21]"></i> Gallery</h3>
-            <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
-          </div>
-
-          <!-- Lightbox -->
-          <div id="lightbox" class="fixed inset-0 bg-black/90 z-[999] hidden items-center justify-center p-4" onclick="if(event.target===this)closeLightbox()">
-            <div id="lightbox-inner" class="max-w-4xl w-full max-h-full overflow-hidden rounded-xl relative"></div>
-            <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white bg-black/40 hover:bg-black/80 w-10 h-10 rounded-full flex items-center justify-center text-xl transition-all"><i class="ph ph-x"></i></button>
-          </div>
 
           <!-- Back -->
           <div class="mt-12 pt-8 border-t border-gray-100">
@@ -159,32 +139,6 @@ function formatDate(d) {
   return new Date(d).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
 }
 
-function getYouTubeEmbed(url) {
-  if (!url) return null;
-  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&?\s]+)/);
-  return m ? `https://www.youtube.com/embed/${m[1]}?rel=0` : null;
-}
-
-function openLightbox(src, isVid, caption) {
-  const lb = document.getElementById('lightbox');
-  const inner = document.getElementById('lightbox-inner');
-  if (isVid) {
-    inner.innerHTML = `<video src="${src}" controls autoplay loop class="w-full max-h-[80vh] rounded-xl"></video>`;
-  } else {
-    inner.innerHTML = `<img src="${src}" alt="${caption}" class="w-full max-h-[80vh] object-contain rounded-xl">`;
-  }
-  if (caption) inner.innerHTML += `<p class="text-white/70 text-sm text-center mt-2">${caption}</p>`;
-  lb.classList.remove('hidden');
-  lb.classList.add('flex');
-}
-
-function closeLightbox() {
-  const lb = document.getElementById('lightbox');
-  lb.classList.add('hidden');
-  lb.classList.remove('flex');
-  document.getElementById('lightbox-inner').innerHTML = '';
-}
-
 async function load() {
   if (!id) { showError(); return; }
   try {
@@ -214,46 +168,14 @@ async function load() {
       document.getElementById('sidebar-client-name').textContent = item.client_name;
       document.getElementById('sidebar-client').classList.remove('hidden');
     }
-    // Cover media (image or MP4)
-    const coverSrc = item.images && item.images.length ? item.images[0].image : item.image;
-    if (coverSrc) {
-      const mediaWrap = document.getElementById('detail-media-container');
-      const isVid = coverSrc.toLowerCase().endsWith('.mp4');
-      if (isVid) {
-        mediaWrap.innerHTML = `<video src="${FRAPPE}${coverSrc}" autoplay loop muted playsinline class="w-full max-h-96 object-cover"></video>`;
-      } else {
-        mediaWrap.innerHTML = `<img src="${FRAPPE}${coverSrc}" alt="${item.title}" class="w-full object-cover max-h-96">`;
-      }
+    if (item.image) {
+      document.getElementById('detail-image').src = FRAPPE + item.image;
+      document.getElementById('detail-image').alt = item.title;
       document.getElementById('detail-image-wrap').classList.remove('hidden');
     }
 
     const body = item.description || item.content || item.excerpt || '';
     document.getElementById('detail-body').innerHTML = body;
-
-    // YouTube embed
-    if (item.video_url) {
-      const embedUrl = getYouTubeEmbed(item.video_url);
-      if (embedUrl) {
-        document.getElementById('youtube-embed').src = embedUrl;
-        document.getElementById('video-section').classList.remove('hidden');
-      }
-    }
-
-    // Gallery (skip index 0 = cover if used, show rest)
-    const images = item.images || [];
-    const galleryItems = images.slice(coverSrc === (images[0] && images[0].image) ? 1 : 0);
-    if (galleryItems.length) {
-      const grid = document.getElementById('gallery-grid');
-      grid.innerHTML = galleryItems.map((img, i) => {
-        const isVid = img.image && img.image.toLowerCase().endsWith('.mp4');
-        const mediaCls = 'w-full h-40 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity';
-        const media = isVid
-          ? `<video src="${FRAPPE}${img.image}" autoplay loop muted playsinline class="${mediaCls}" onclick="openLightbox('${FRAPPE}${img.image}',true,'${img.caption||''}')" title="${img.caption||''}"></video>`
-          : `<img src="${FRAPPE}${img.image}" alt="${img.caption||''}" class="${mediaCls}" onclick="openLightbox('${FRAPPE}${img.image}',false,'${img.caption||''}')">`;
-        return `<div class="relative">${media}${img.caption ? `<p class="text-xs text-gray-500 mt-1 text-center">${img.caption}</p>` : ''}</div>`;
-      }).join('');
-      document.getElementById('gallery-section').classList.remove('hidden');
-    }
 
     document.getElementById('loading-state').classList.add('hidden');
     document.getElementById('main-content').classList.remove('hidden');
