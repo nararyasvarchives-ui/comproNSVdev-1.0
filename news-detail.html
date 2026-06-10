@@ -83,9 +83,10 @@
 
           <h1 id="detail-title" class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight"></h1>
 
-          <!-- Cover Media (image or MP4) -->
-          <div id="detail-image-wrap" class="hidden mb-8 rounded-2xl overflow-hidden shadow-card">
-            <div id="detail-media-container"></div>
+          <!-- Gallery Viewer: Big Frame + Thumbnail Strip -->
+          <div id="gallery-viewer" class="hidden mb-8">
+            <div id="big-frame" class="rounded-2xl overflow-hidden bg-gray-100 mb-2"></div>
+            <div id="thumb-strip" class="hidden gap-2 overflow-x-auto pb-1 mt-2"></div>
           </div>
 
           <!-- Excerpt as lead -->
@@ -100,12 +101,6 @@
             <div class="aspect-video rounded-2xl overflow-hidden bg-gray-100">
               <iframe id="youtube-embed" src="" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-          </div>
-
-          <!-- Gallery -->
-          <div id="gallery-section" class="hidden mt-10">
-            <h3 class="font-bold text-gray-900 text-xl mb-5 flex items-center gap-2"><i class="ph ph-images text-[#A11E21]"></i> Gallery</h3>
-            <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
           </div>
 
           <!-- Lightbox -->
@@ -188,20 +183,61 @@ function getYouTubeEmbed(url) {
   return m ? `https://www.youtube.com/embed/${m[1]}?rel=0` : null;
 }
 
-function openLightbox(src, isVid, caption) {
-  const lb = document.getElementById('lightbox');
-  const inner = document.getElementById('lightbox-inner');
-  inner.innerHTML = isVid
-    ? `<video src="${src}" controls autoplay loop class="w-full max-h-[80vh] rounded-xl"></video>`
-    : `<img src="${src}" alt="${caption}" class="w-full max-h-[80vh] object-contain rounded-xl">`;
-  if (caption) inner.innerHTML += `<p class="text-white/70 text-sm text-center mt-2">${caption}</p>`;
+const FRAPPE_O = window.location.origin;
+function isVid(s){ return s && s.toLowerCase().endsWith('.mp4'); }
+
+function renderBigFrame(src, cap) {
+  const f = document.getElementById('big-frame');
+  if (isVid(src)) {
+    f.innerHTML = `<video src="${FRAPPE_O}${src}" autoplay loop muted playsinline class="w-full max-h-96 object-cover"></video>`;
+    f.style.cursor='default'; f.onclick=null;
+  } else {
+    f.innerHTML = `<img src="${FRAPPE_O}${src}" alt="${cap||''}" class="w-full object-cover max-h-96">`;
+    f.style.cursor='zoom-in'; f.onclick=()=>openLightbox(src,false,cap);
+  }
+}
+
+function setActiveThumb(idx) {
+  const list=window._gList||[]; if(!list[idx])return;
+  window._gIdx=idx; renderBigFrame(list[idx].image,list[idx].caption||'');
+  document.querySelectorAll('.nsv-thumb').forEach((b,i)=>{
+    b.classList.toggle('ring-2',i===idx);
+    b.classList.toggle('ring-[#A11E21]',i===idx);
+    b.classList.toggle('opacity-50',i!==idx);
+  });
+}
+
+function buildGallery(images){
+  if(!images||!images.length)return;
+  window._gList=images; window._gIdx=0;
+  renderBigFrame(images[0].image,images[0].caption||'');
+  document.getElementById('gallery-viewer').classList.remove('hidden');
+  if(images.length>1){
+    const strip=document.getElementById('thumb-strip');
+    strip.innerHTML=images.map((img,i)=>{
+      const t=isVid(img.image)
+        ?`<video src="${FRAPPE_O}${img.image}" muted class="w-full h-full object-cover pointer-events-none"></video>`
+        :`<img src="${FRAPPE_O}${img.image}" alt="${img.caption||''}" class="w-full h-full object-cover">`;
+      const a=i===0?'ring-2 ring-[#A11E21]':'opacity-50 hover:opacity-100';
+      return `<button onclick="setActiveThumb(${i})" class="nsv-thumb flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border border-gray-200 transition-all ${a}">${t}</button>`;
+    }).join('');
+    strip.classList.remove('hidden'); strip.classList.add('flex');
+  }
+}
+
+function openLightbox(src,vid,cap){
+  const lb=document.getElementById('lightbox'),inner=document.getElementById('lightbox-inner');
+  inner.innerHTML=vid
+    ?`<video src="${FRAPPE_O}${src}" controls autoplay loop class="w-full max-h-[85vh] rounded-xl"></video>`
+    :`<img src="${FRAPPE_O}${src}" alt="${cap||''}" class="w-full max-h-[85vh] object-contain rounded-xl">`;
+  if(cap)inner.innerHTML+=`<p class="text-white/70 text-sm text-center mt-2">${cap}</p>`;
   lb.classList.remove('hidden'); lb.classList.add('flex');
 }
 
-function closeLightbox() {
+function closeLightbox(){
   document.getElementById('lightbox').classList.add('hidden');
   document.getElementById('lightbox').classList.remove('flex');
-  document.getElementById('lightbox-inner').innerHTML = '';
+  document.getElementById('lightbox-inner').innerHTML='';
 }
 
 async function load() {
@@ -234,49 +270,19 @@ async function load() {
       document.getElementById('sb-author').textContent = item.author;
       document.getElementById('sb-author-wrap').classList.remove('hidden');
     }
-    // Cover media (image or MP4)
-    const coverSrc = item.images && item.images.length ? item.images[0].image : item.image;
-    if (coverSrc) {
-      const mediaWrap = document.getElementById('detail-media-container');
-      const isVid = coverSrc.toLowerCase().endsWith('.mp4');
-      if (isVid) {
-        mediaWrap.innerHTML = `<video src="${FRAPPE}${coverSrc}" autoplay loop muted playsinline class="w-full max-h-[480px] object-cover"></video>`;
-      } else {
-        mediaWrap.innerHTML = `<img src="${FRAPPE}${coverSrc}" alt="${item.title}" class="w-full object-cover max-h-[480px]">`;
-      }
-      document.getElementById('detail-image-wrap').classList.remove('hidden');
-    }
-    if (item.excerpt) {
-      const el = document.getElementById('detail-excerpt');
-      el.textContent = item.excerpt; el.classList.remove('hidden');
-    }
+    // Build gallery viewer
+    const images=(item.images&&item.images.length)
+      ?item.images
+      :(item.image?[{image:item.image,caption:item.title}]:[]);
+    buildGallery(images);
 
-    const body = item.content || item.description || '';
-    document.getElementById('detail-body').innerHTML = body;
-
-    // YouTube embed
+        // YouTube embed
     if (item.video_url) {
       const embedUrl = getYouTubeEmbed(item.video_url);
       if (embedUrl) {
         document.getElementById('youtube-embed').src = embedUrl;
         document.getElementById('video-section').classList.remove('hidden');
       }
-    }
-
-    // Gallery
-    const images = item.images || [];
-    const galleryItems = images.slice(coverSrc === (images[0] && images[0].image) ? 1 : 0);
-    if (galleryItems.length) {
-      const grid = document.getElementById('gallery-grid');
-      grid.innerHTML = galleryItems.map(img => {
-        const isVid = img.image && img.image.toLowerCase().endsWith('.mp4');
-        const cls = 'w-full h-40 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity';
-        const media = isVid
-          ? `<video src="${FRAPPE}${img.image}" autoplay loop muted playsinline class="${cls}" onclick="openLightbox('${FRAPPE}${img.image}',true,'${img.caption||''}')" title="${img.caption||''}"></video>`
-          : `<img src="${FRAPPE}${img.image}" alt="${img.caption||''}" class="${cls}" onclick="openLightbox('${FRAPPE}${img.image}',false,'${img.caption||''}')">`;
-        return `<div class="relative">${media}${img.caption?`<p class="text-xs text-gray-500 mt-1 text-center">${img.caption}</p>`:''}</div>`;
-      }).join('');
-      document.getElementById('gallery-section').classList.remove('hidden');
     }
 
     // Share links

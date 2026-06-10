@@ -93,8 +93,11 @@ async function loadPortfolio() {
       return;
     }
     items.forEach(item => {
+      const isVid = item.cover_image && item.cover_image.toLowerCase().endsWith('.mp4');
       const img = item.cover_image
-        ? `<img src="${FRAPPE_URL}${item.cover_image}" alt="${item.title}" class="w-full h-52 object-cover">`
+        ? (isVid
+            ? `<video src="${FRAPPE_URL}${item.cover_image}" autoplay loop muted playsinline class="w-full h-52 object-cover"></video>`
+            : `<img src="${FRAPPE_URL}${item.cover_image}" alt="${item.title}" class="w-full h-52 object-cover">`)
         : `<div class="w-full h-52 bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center"><i class="ph ph-briefcase text-5xl text-primary/30"></i></div>`;
       grid.innerHTML += `
         <a href="portfolio-detail.html?id=${item.name}" class="portfolio-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-soft flex flex-col group">
