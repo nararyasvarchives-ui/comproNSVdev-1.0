@@ -79,28 +79,13 @@
           </div>
           <h1 id="detail-title" class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight"></h1>
 
-          <!-- Gallery Viewer: Big Frame + Thumbnail Strip -->
-          <div id="gallery-viewer" class="hidden mb-8">
-            <div id="big-frame" class="rounded-2xl overflow-hidden bg-gray-100 mb-2"></div>
-            <div id="thumb-strip" class="hidden gap-2 overflow-x-auto pb-1 mt-2"></div>
+          <!-- Cover Image -->
+          <div id="detail-image-wrap" class="hidden mb-8 rounded-2xl overflow-hidden">
+            <img id="detail-image" src="" alt="" class="w-full object-cover max-h-96">
           </div>
 
           <!-- Body -->
           <div id="detail-body" class="prose-content text-gray-600 leading-relaxed"></div>
-
-          <!-- YouTube Video -->
-          <div id="video-section" class="hidden mt-10">
-            <h3 class="font-bold text-gray-900 text-xl mb-4 flex items-center gap-2"><i class="ph ph-youtube-logo text-[#A11E21]"></i> Video</h3>
-            <div class="aspect-video rounded-2xl overflow-hidden bg-gray-100">
-              <iframe id="youtube-embed" src="" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-          </div>
-
-          <!-- Lightbox -->
-          <div id="lightbox" class="fixed inset-0 bg-black/90 z-[999] hidden items-center justify-center p-4" onclick="if(event.target===this)closeLightbox()">
-            <div id="lightbox-inner" class="max-w-4xl w-full max-h-full overflow-hidden rounded-xl relative"></div>
-            <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white bg-black/40 hover:bg-black/80 w-10 h-10 rounded-full flex items-center justify-center text-xl transition-all"><i class="ph ph-x"></i></button>
-          </div>
 
           <!-- Back -->
           <div class="mt-12 pt-8 border-t border-gray-100">
@@ -154,69 +139,6 @@ function formatDate(d) {
   return new Date(d).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
 }
 
-function getYouTubeEmbed(url) {
-  if (!url) return null;
-  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&?\s]+)/);
-  return m ? `https://www.youtube.com/embed/${m[1]}?rel=0` : null;
-}
-
-const FRAPPE_O = window.location.origin;
-function isVid(s){ return s && s.toLowerCase().endsWith('.mp4'); }
-
-function renderBigFrame(src, cap) {
-  const f = document.getElementById('big-frame');
-  if (isVid(src)) {
-    f.innerHTML = `<video src="${FRAPPE_O}${src}" autoplay loop muted playsinline class="w-full max-h-96 object-cover"></video>`;
-    f.style.cursor='default'; f.onclick=null;
-  } else {
-    f.innerHTML = `<img src="${FRAPPE_O}${src}" alt="${cap||''}" class="w-full object-cover max-h-96">`;
-    f.style.cursor='zoom-in'; f.onclick=()=>openLightbox(src,false,cap);
-  }
-}
-
-function setActiveThumb(idx) {
-  const list=window._gList||[]; if(!list[idx])return;
-  window._gIdx=idx; renderBigFrame(list[idx].image,list[idx].caption||'');
-  document.querySelectorAll('.nsv-thumb').forEach((b,i)=>{
-    b.classList.toggle('ring-2',i===idx);
-    b.classList.toggle('ring-[#A11E21]',i===idx);
-    b.classList.toggle('opacity-50',i!==idx);
-  });
-}
-
-function buildGallery(images){
-  if(!images||!images.length)return;
-  window._gList=images; window._gIdx=0;
-  renderBigFrame(images[0].image,images[0].caption||'');
-  document.getElementById('gallery-viewer').classList.remove('hidden');
-  if(images.length>1){
-    const strip=document.getElementById('thumb-strip');
-    strip.innerHTML=images.map((img,i)=>{
-      const t=isVid(img.image)
-        ?`<video src="${FRAPPE_O}${img.image}" muted class="w-full h-full object-cover pointer-events-none"></video>`
-        :`<img src="${FRAPPE_O}${img.image}" alt="${img.caption||''}" class="w-full h-full object-cover">`;
-      const a=i===0?'ring-2 ring-[#A11E21]':'opacity-50 hover:opacity-100';
-      return `<button onclick="setActiveThumb(${i})" class="nsv-thumb flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border border-gray-200 transition-all ${a}">${t}</button>`;
-    }).join('');
-    strip.classList.remove('hidden'); strip.classList.add('flex');
-  }
-}
-
-function openLightbox(src,vid,cap){
-  const lb=document.getElementById('lightbox'),inner=document.getElementById('lightbox-inner');
-  inner.innerHTML=vid
-    ?`<video src="${FRAPPE_O}${src}" controls autoplay loop class="w-full max-h-[85vh] rounded-xl"></video>`
-    :`<img src="${FRAPPE_O}${src}" alt="${cap||''}" class="w-full max-h-[85vh] object-contain rounded-xl">`;
-  if(cap)inner.innerHTML+=`<p class="text-white/70 text-sm text-center mt-2">${cap}</p>`;
-  lb.classList.remove('hidden'); lb.classList.add('flex');
-}
-
-function closeLightbox(){
-  document.getElementById('lightbox').classList.add('hidden');
-  document.getElementById('lightbox').classList.remove('flex');
-  document.getElementById('lightbox-inner').innerHTML='';
-}
-
 async function load() {
   if (!id) { showError(); return; }
   try {
@@ -246,23 +168,15 @@ async function load() {
       document.getElementById('sidebar-client-name').textContent = item.client_name;
       document.getElementById('sidebar-client').classList.remove('hidden');
     }
-    // Build gallery viewer
-    const images=(item.images&&item.images.length)
-      ?item.images
-      :(item.image?[{image:item.image,caption:item.title}]:[]);
-    buildGallery(images);
+    if (item.image) {
+      document.getElementById('detail-image').src = FRAPPE + item.image;
+      document.getElementById('detail-image').alt = item.title;
+      document.getElementById('detail-image-wrap').classList.remove('hidden');
+    }
 
     const body = item.description || item.content || item.excerpt || '';
     document.getElementById('detail-body').innerHTML = body;
 
-    // YouTube embed
-    if (item.video_url) {
-      const embedUrl = getYouTubeEmbed(item.video_url);
-      if (embedUrl) {
-        document.getElementById('youtube-embed').src = embedUrl;
-        document.getElementById('video-section').classList.remove('hidden');
-      }
-    }
     document.getElementById('loading-state').classList.add('hidden');
     document.getElementById('main-content').classList.remove('hidden');
   } catch {
