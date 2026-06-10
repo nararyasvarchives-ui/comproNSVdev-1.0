@@ -276,7 +276,15 @@ async function load() {
       :(item.image?[{image:item.image,caption:item.title}]:[]);
     buildGallery(images);
 
-        // YouTube embed
+    if (item.excerpt) {
+      const el = document.getElementById('detail-excerpt');
+      el.textContent = item.excerpt; el.classList.remove('hidden');
+    }
+
+    const body = item.content || item.description || '';
+    document.getElementById('detail-body').innerHTML = body;
+
+    // YouTube embed
     if (item.video_url) {
       const embedUrl = getYouTubeEmbed(item.video_url);
       if (embedUrl) {
